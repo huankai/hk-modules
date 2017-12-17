@@ -39,7 +39,7 @@ public class WebMVCConfigutation extends WebMvcConfigurerAdapter {
      * 静态资源地址
      * </pre>
      */
-    @Value("${hk.web.resource.url:/}")
+    @Value("${hk.web.resuources.url:/}")
 	private String resourceUrl;
     
     @Autowired

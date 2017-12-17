@@ -29,7 +29,7 @@
 		<shiro.version>1.4.0</shiro.version>
 
 		<spring.boot.version>1.5.8.RELEASE</spring.boot.version>
-		
+
 		<hk.commons.version>1.0.0.RELEASE</hk.commons.version>
 		<hk.core.version>1.0.0.RELEASE</hk.core.version>
 	</properties>
@@ -63,7 +63,7 @@
 				<artifactId>hk-commons-httpclient</artifactId>
 				<version>${hk.commons.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>com.hk</groupId>
 				<artifactId>hk-core-data</artifactId>
@@ -72,6 +72,17 @@
 			<dependency>
 				<groupId>com.hk</groupId>
 				<artifactId>hk-core-web</artifactId>
+				<version>${hk.core.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.hk</groupId>
+				<artifactId>hk-core-authentication-api</artifactId>
+				<version>${hk.core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.hk</groupId>
+				<artifactId>hk-core-authentication-security</artifactId>
 				<version>${hk.core.version}</version>
 			</dependency>
 

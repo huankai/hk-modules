@@ -26,12 +26,10 @@
 		<dependency>
 			<groupId>com.hk</groupId>
 			<artifactId>hk-core-authentication-api</artifactId>
-			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.hk</groupId>
 			<artifactId>hk-core-authentication-shiro</artifactId>
-			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 </project>

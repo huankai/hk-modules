@@ -38,7 +38,8 @@
 		<module>hk-core-data</module>
 		<module>hk-core-web</module>
 		<module>hk-core-authentication-api</module>
-    <module>hk-core-authentication-shiro</module>
+    	<module>hk-core-authentication-shiro</module>
+    	<module>hk-core-authentication-security</module>
   </modules>
 
 	<dependencyManagement>

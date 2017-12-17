@@ -75,6 +75,16 @@
 				<version>${hk.core.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>com.hk</groupId>
+				<artifactId>hk-core-authentication-api</artifactId>
+				<version>${hk.core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.hk</groupId>
+				<artifactId>hk-core-authentication-shiro</artifactId>
+				<version>${hk.core.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-dependencies</artifactId>
 				<version>${spring.boot.version}</version>

@@ -6,6 +6,8 @@
 系统认证api
 ### 2.hk-core-authentication-shiro ###
 系统认证api  shiro的实现
+### 3.hk-core-authentication-security ###
+系统认证api spring security的实现
 ### 3.hk-core-data ###
 domain 、 dao、 service、接口的定义，包括jpa的审计机制、自定义查询等
 ### 4.hk-core-web ###

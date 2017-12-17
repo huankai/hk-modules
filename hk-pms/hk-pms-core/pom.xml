@@ -16,9 +16,22 @@
 	</properties>
 	<dependencies>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
+			<groupId>com.hk</groupId>
+			<artifactId>hk-commons-util</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.hk</groupId>
+			<artifactId>hk-core-data</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.hk</groupId>
+			<artifactId>hk-core-authentication-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.hk</groupId>
+			<artifactId>hk-core-authentication-shiro</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 </project>

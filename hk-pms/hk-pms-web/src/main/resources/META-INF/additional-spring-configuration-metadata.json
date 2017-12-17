@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "hk.web.resource.url",
+  "type": "java.lang.String",
+  "description": "A description for 'hk.web.resource.url'"
+}]}

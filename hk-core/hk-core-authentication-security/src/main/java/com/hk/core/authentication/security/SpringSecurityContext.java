@@ -1,5 +1,7 @@
 package com.hk.core.authentication.security;
 
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.hk.core.authentication.api.SecurityContext;
@@ -14,7 +16,8 @@ public class SpringSecurityContext implements SecurityContext {
 
 	@Override
 	public boolean isAuthenticated() {
-		return SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		return null != authentication && !(authentication instanceof AnonymousAuthenticationToken) && authentication.isAuthenticated();
 	}
 
 	@Override

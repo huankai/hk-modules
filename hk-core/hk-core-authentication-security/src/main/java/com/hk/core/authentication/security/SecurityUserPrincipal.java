@@ -52,7 +52,7 @@ public class SecurityUserPrincipal extends UserPrincipal implements UserDetails 
 
 	@Override
 	public boolean isAccountNonLocked() {
-		return false;
+		return true;
 	}
 
 	@Override

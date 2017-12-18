@@ -16,6 +16,14 @@ import com.hk.core.authentication.api.UserPrincipal;
 @SuppressWarnings("serial")
 public class SecurityUserPrincipal extends UserPrincipal implements UserDetails {
 
+	public SecurityUserPrincipal() {
+	}
+
+	public SecurityUserPrincipal(String userId, String userName, String nickName, Integer userType, String phone,
+			String email, Integer sex) {
+		super(userId, userName, nickName, userType, phone, email, sex);
+	}
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Set<String> roleNames = getRoles();

@@ -4,17 +4,18 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-
 /**
  * 
  * @author huangkai
  *
  */
-public class UserDetailServiceImpl implements UserDetailsService {
+public abstract class UserDetailServiceImpl implements UserDetailsService {
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		return new SecurityUserPrincipal();
+	public final UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		return loadUserByLoginUsername(username);
 	}
+
+	protected abstract SecurityUserPrincipal loadUserByLoginUsername(String username);
 
 }

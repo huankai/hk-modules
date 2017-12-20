@@ -3,6 +3,9 @@ package com.hk.pms.core.domain;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 /**
  * 
  * @author huangkai
@@ -10,6 +13,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "sys_login_log")
+@Data
+@EqualsAndHashCode(callSuper = false)
 public class SysLoginLog extends ModelHolder.SysLoginLogBase {
 
 	/**

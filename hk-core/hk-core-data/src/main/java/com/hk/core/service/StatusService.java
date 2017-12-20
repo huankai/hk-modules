@@ -7,20 +7,20 @@ package com.hk.core.service;
  * @date 2017年11月30日下午6:01:43
  * @param <T>
  */
-public interface StatusService<T> {
+public interface StatusService {
 
 	/**
 	 * 启用
 	 * @param id
 	 * @return
 	 */
-	T enable(String id);
+	void enable(String id);
 
 	/**
 	 * 禁用
 	 * @param id
 	 * @return
 	 */
-	T disable(String id);
+	void disable(String id);
 
 }

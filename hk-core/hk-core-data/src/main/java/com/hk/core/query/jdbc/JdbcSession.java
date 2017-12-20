@@ -1,14 +1,11 @@
-package com.hk.core.query;
+package com.hk.core.query.jdbc;
 
 import java.util.List;
 
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
-import com.hk.commons.util.ConverterUtils;
-import com.hk.core.dialect.Dialect;
+import com.hk.core.query.jdbc.dialect.Dialect;
 
 /**
  * 
@@ -55,38 +52,40 @@ public class JdbcSession {
 	// return jdbcTemplate.update(sql, args);
 	// }
 
-	public <T> List<T> queryForList(Sql sql, Class<T> clazz, Object... args) {
-		BeanPropertyRowMapper<T> rowMapper = BeanPropertyRowMapper.newInstance(clazz);
-		rowMapper.setConversionService(ConverterUtils.DEFAULT_CONVERSIONSERVICE);
-		return queryForList(sql, rowMapper, args);
-	}
+	// public <T> List<T> queryForList(SelectArguments args, Class<T> clazz,
+	// Object... args) {
+	// BeanPropertyRowMapper<T> rowMapper =
+	// BeanPropertyRowMapper.newInstance(clazz);
+	// rowMapper.setConversionService(ConverterUtils.DEFAULT_CONVERSIONSERVICE);
+	// // return queryForList(sql, rowMapper, args);
+	// }
 
-	public <T> List<T> queryForList(Sql sql, RowMapper<T> rowMapper, Object... args) {
-		return jdbcTemplate.query(sql.toSqlString(), rowMapper, args);
-	}
-
-	public <T> T queryForScalar(Sql sql, Class<T> clazz, Object... args) {
-		return jdbcTemplate.queryForObject(sql.toSqlString(), clazz, args);
-	}
+	// public <T> List<T> queryForList(Sql sql, RowMapper<T> rowMapper, Object...
+	// args) {
+	// return jdbcTemplate.query(sql.toSqlString(), rowMapper, args);
+	// }
+	//
+	// public <T> T queryForScalar(Sql sql, Class<T> clazz, Object... args) {
+	// return jdbcTemplate.queryForObject(sql.toSqlString(), clazz, args);
+	// }
 
 	// public <T> ListResult<T> queryForList(SelectArguments arguments) {
 	// return null;
 	// }
 
-	// private class SelectStatement {
-	//
-	// public StringBuilder selectSql;
-	//
-	// public StringBuilder countSql;
-	//
-	// public List<Object> parameters;
-	//
-	// public SelectStatement(StringBuilder selectSql, StringBuilder countSql,
-	// List<Object> parameters) {
-	// this.selectSql = selectSql;
-	// this.countSql = countSql;
-	// this.parameters = parameters;
-	// }
-	// }
+	private class SelectStatement {
+
+		public StringBuilder selectSql;
+
+		public StringBuilder countSql;
+
+		public List<Object> parameters;
+
+		public SelectStatement(StringBuilder selectSql, StringBuilder countSql, List<Object> parameters) {
+			this.selectSql = selectSql;
+			this.countSql = countSql;
+			this.parameters = parameters;
+		}
+	}
 
 }

@@ -3,6 +3,9 @@ package com.hk.pms.core.domain;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 /**
  * 机构部门实体
  * 
@@ -11,6 +14,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "sys_org_dept")
+@Data
+@EqualsAndHashCode(callSuper = false)
 public class SysOrgDept extends ModelHolder.SysOrgDeptBase {
 
 	/**

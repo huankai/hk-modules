@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 /**
  * 字典
  * @author: huangkai
@@ -13,6 +16,8 @@ import javax.persistence.Transient;
  */
 @Entity
 @Table(name = "sys_base_code")
+@Data
+@EqualsAndHashCode(callSuper = false)
 public class SysBaseCode extends ModelHolder.SysBaseCodeBase {
 
 

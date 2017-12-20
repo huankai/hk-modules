@@ -1,11 +1,12 @@
-package com.hk.core.query;
+package com.hk.core.query.jdbc;
 
 import java.util.List;
 import java.util.Set;
 
 import com.google.common.collect.Lists;
+import com.hk.core.query.Order;
 
-public final class Sql {
+public final class SelectArguments {
 
 	/**
 	 * 分页参数
@@ -61,12 +62,13 @@ public final class Sql {
 	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
 	}
-	
+
 	public int getStartRowIndex() {
-		if(pageIndex <= 0) pageIndex = 1;
-		return (pageIndex - 1) * pageSize; 
+		if (pageIndex <= 0)
+			pageIndex = 1;
+		return (pageIndex - 1) * pageSize;
 	}
-	
+
 	public boolean isDistinct() {
 		return distinct;
 	}

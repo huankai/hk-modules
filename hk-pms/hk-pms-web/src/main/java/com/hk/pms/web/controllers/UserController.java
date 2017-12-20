@@ -1,7 +1,6 @@
 package com.hk.pms.web.controllers;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +29,6 @@ public class UserController {
 		user.setPassWord(new ShiroPasswordEncrypt().asSha512HashToBase64("admin", user.getUserName()));
 		user.setPhone("13805s0");
 		user.setSex(0);
-		user.setAaaa(LocalDateTime.now());
 		user.setUserStatus(1);
 		user.setIsProtected(true);
 		user.setUserType(0);

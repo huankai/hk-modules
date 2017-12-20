@@ -10,9 +10,9 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import com.hk.commons.util.StringUtils;
 import com.hk.core.audit.UserIdAuditor;
 import com.hk.core.authentication.api.SecurityContext;
-import com.hk.core.dialect.Dialect;
-import com.hk.core.dialect.MySQLDialect;
-import com.hk.core.query.JdbcSession;
+import com.hk.core.query.jdbc.JdbcSession;
+import com.hk.core.query.jdbc.dialect.Dialect;
+import com.hk.core.query.jdbc.dialect.MySQLDialect;
 
 /**
  * Core Dao 自动配置

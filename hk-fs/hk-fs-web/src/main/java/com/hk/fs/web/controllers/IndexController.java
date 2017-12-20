@@ -5,9 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.hk.commons.fastjson.JsonUtils;
 import com.hk.core.authentication.api.SecurityContext;
-import com.hk.core.authentication.api.UserPrincipal;
 
 /**
  * 
@@ -16,9 +14,6 @@ import com.hk.core.authentication.api.UserPrincipal;
  */
 @Controller
 public class IndexController {
-
-	// private static final Logger logger =
-	// LoggerFactory.getLogger(IndexController.class);
 
 	@Autowired
 	private SecurityContext securityContext;
@@ -30,10 +25,6 @@ public class IndexController {
 	 */
 	@GetMapping({ "/", "/index" })
 	public String index() {
-		boolean authenticated = securityContext.isAuthenticated();
-		System.out.println(authenticated);
-		UserPrincipal principal = securityContext.getPrincipal();
-		System.out.println(JsonUtils.toJSONString(principal));
 		return "/index";
 	}
 
@@ -45,9 +36,9 @@ public class IndexController {
 	@RequestMapping("login")
 	public String login() {
 		// 如果已登陆的用户，再将访问时，重定向到首页
-		// if(SecurityUtils.isAuthenticated()) {
-		// return "redirect:/index";
-		// }
+		if (securityContext.isAuthenticated()) {
+			return "redirect:/index";
+		}
 		return "/login";
 	}
 

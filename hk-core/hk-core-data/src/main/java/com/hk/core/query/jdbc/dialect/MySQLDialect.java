@@ -1,4 +1,4 @@
-package com.hk.core.dialect;
+package com.hk.core.query.jdbc.dialect;
 
 public class MySQLDialect implements Dialect {
 

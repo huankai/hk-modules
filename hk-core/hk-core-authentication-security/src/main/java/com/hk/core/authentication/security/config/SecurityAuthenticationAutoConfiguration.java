@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 import com.hk.core.authentication.security.DefaultUserDetailServiceImpl;
 import com.hk.core.authentication.security.SpringSecurityContext;
+import com.hk.core.authentication.security.encrypt.SecurityPasswordEncrypt;
 
 @Configuration
 public class SecurityAuthenticationAutoConfiguration {
@@ -20,6 +21,16 @@ public class SecurityAuthenticationAutoConfiguration {
 	@ConditionalOnMissingBean(value = { UserDetailsService.class })
 	public UserDetailsService userDetails() {
 		return new DefaultUserDetailServiceImpl();
+	}
+
+	/**
+	 * 密码加密方式
+	 * 
+	 * @return
+	 */
+	@Bean
+	public SecurityPasswordEncrypt passwordencrypt() {
+		return new SecurityPasswordEncrypt();
 	}
 
 	@Bean

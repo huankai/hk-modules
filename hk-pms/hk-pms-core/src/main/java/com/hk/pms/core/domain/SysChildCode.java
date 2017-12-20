@@ -4,12 +4,17 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 /**
  * @author: huangkai
  * @date 2017-11-29 17:11
  */
 @Entity
 @Table(name = "sys_clild_code")
+@Data
+@EqualsAndHashCode(callSuper = false)
 public class SysChildCode extends ModelHolder.SysChildCodeBase {
 
     /**
@@ -19,12 +24,5 @@ public class SysChildCode extends ModelHolder.SysChildCodeBase {
 	
 	@Transient
     private SysBaseCode sysBaseCode;
-
-    public SysBaseCode getSysBaseCode() {
-        return sysBaseCode;
-    }
-
-    public void setSysBaseCode(SysBaseCode sysBaseCode) {
-        this.sysBaseCode = sysBaseCode;
-    }
+	
 }

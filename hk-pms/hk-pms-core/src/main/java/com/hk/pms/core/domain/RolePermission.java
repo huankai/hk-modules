@@ -3,6 +3,9 @@ package com.hk.pms.core.domain;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 
 /**
  * 
@@ -11,6 +14,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "sys_role_permission")
+@Data
+@EqualsAndHashCode(callSuper = false)
 public class RolePermission extends ModelHolder.RolePermissionBase {
 
 	/**

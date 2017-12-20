@@ -5,6 +5,9 @@ import javax.persistence.Table;
 
 import com.hk.pms.core.domain.ModelHolder.PermissionBase;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 /**
  * 权限
  * @author huangkai
@@ -12,6 +15,8 @@ import com.hk.pms.core.domain.ModelHolder.PermissionBase;
  */
 @Entity
 @Table(name = "sys_permission")
+@Data
+@EqualsAndHashCode(callSuper = false)
 public class Permission extends PermissionBase {
 
 	/**

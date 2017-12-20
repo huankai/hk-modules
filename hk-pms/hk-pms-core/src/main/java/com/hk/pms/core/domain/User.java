@@ -6,6 +6,9 @@ import javax.persistence.Table;
 import com.hk.commons.annotations.EnumDisplay;
 import com.hk.commons.util.EnumDisplayUtils;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 /**
  * 用户基本信息
  * 
@@ -14,6 +17,8 @@ import com.hk.commons.util.EnumDisplayUtils;
  */
 @Entity
 @Table(name = "sys_user")
+@Data
+@EqualsAndHashCode(callSuper = false)
 public class User extends ModelHolder.UserBase {
 
 	/**

@@ -16,12 +16,18 @@ import com.hk.core.authentication.api.UserPrincipal;
 @SuppressWarnings("serial")
 public class SecurityUserPrincipal extends UserPrincipal implements UserDetails {
 
+	/**
+	 * 
+	 */
+	private String passWord;
+
 	public SecurityUserPrincipal() {
 	}
 
-	public SecurityUserPrincipal(String userId, String userName, String nickName, Integer userType, String phone,
-			String email, Integer sex) {
+	public SecurityUserPrincipal(String userId, String userName, String passWord, String nickName, Integer userType,
+			String phone, String email, Integer sex) {
 		super(userId, userName, nickName, userType, phone, email, sex);
+		this.passWord = passWord;
 	}
 
 	@Override
@@ -37,7 +43,7 @@ public class SecurityUserPrincipal extends UserPrincipal implements UserDetails 
 
 	@Override
 	public String getPassword() {
-		return null;
+		return passWord;
 	}
 
 	@Override

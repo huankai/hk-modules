@@ -11,7 +11,7 @@ import com.hk.pms.core.domain.User;
  * @author huangkai
  * @date 2017年9月27日下午2:17:58
  */
-public interface UserService extends BaseService<User,String>,StatusService<User> {
+public interface UserService extends BaseService<User,String>,StatusService {
 
     /**
      * @param loginName 登陆用户名，也可以是手机号、邮箱
@@ -34,13 +34,13 @@ public interface UserService extends BaseService<User,String>,StatusService<User
      */
     boolean existsByLoginName(String loginName);
     
-    /**
-     * 组织机构是否存在登陆名
-     * @param loginName
-     * @param orgId
-     * @return
-     */
-    boolean existsByLoginName(String loginName,String orgId);
+//    /**
+//     * 组织机构是否存在登陆名
+//     * @param loginName
+//     * @param orgId
+//     * @return
+//     */
+//    boolean existsByLoginName(String loginName,String orgId);
 
     /**
      * <pre>

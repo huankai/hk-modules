@@ -15,7 +15,7 @@ import com.hk.pms.core.repository.custom.CustomUserRepository;
  * @author huangkai
  * @date 2017年9月27日下午2:22:58
  */
-public interface UserRepository extends StringRepository<User>,CustomUserRepository {
+public interface UserRepository extends StringRepository<User>, CustomUserRepository {
 
 	/**
 	 * JPQL 语法查询，查询字段必须与属性字段相同，不是与数据库表字段
@@ -42,4 +42,12 @@ public interface UserRepository extends StringRepository<User>,CustomUserReposit
 	 * @return
 	 */
 	List<User> findByOrgId(String orgId);
+
+	/**
+	 * 
+	 * @param loginName
+	 * @return
+	 */
+	@Query(value = "SELECT count(*)  FROM User u WHERE u.userName = ?1 OR u.phone = ?1 OR u.email = ?1")
+	boolean existsByLoginName(String loginName);
 }

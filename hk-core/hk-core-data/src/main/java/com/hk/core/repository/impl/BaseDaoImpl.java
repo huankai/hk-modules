@@ -1,11 +1,15 @@
 package com.hk.core.repository.impl;
 
+import java.util.Map;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hk.core.query.jdbc.JdbcSession;
+import com.hk.core.query.jdbc.ListResult;
+import com.hk.core.query.jdbc.SelectArguments;
 
 /**
  * 
@@ -24,20 +28,11 @@ public abstract class BaseDaoImpl {
 		return entityManager;
 	}
 
-//	protected <T> void queryForPage(Sql sql, Class<T> clazz, Object... args) {
-//		jdbcSession.queryForList(sql, clazz, args);
-//	}
-//
-////	protected <T> List<T> queryForList(Sql sql, Class<T> clazz, Object... args) {
-////		return jdbcSession.queryForList(sql, clazz, args);
-////	}
-//	
-//	protected <T> List<T> queryForList(Sql sql, Class<T> clazz, Object... args) {
-//		return jdbcSession.queryForList(sql, clazz, args);
-//	}
-//
-//	protected <T> T queryForObject(Sql sql, Class<T> clazz, Object... args) {
-//		return jdbcSession.queryForScalar(sql, clazz, args);
-//	}
+	public ListResult<Map<String, Object>> queryForList(SelectArguments arguments, boolean retriveRowCount) {
+		return jdbcSession.queryForList(arguments, retriveRowCount);
+	}
 
+	public <T> ListResult<T> queryForList(SelectArguments arguments, boolean retriveRowCount, Class<T> clazz) {
+		return jdbcSession.queryForList(arguments, retriveRowCount, clazz);
+	}
 }

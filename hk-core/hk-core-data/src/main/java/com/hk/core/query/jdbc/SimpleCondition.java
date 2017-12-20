@@ -20,7 +20,7 @@ public class SimpleCondition implements Condition {
 
 	private String field;
 
-	private Operator operator = Operator.EQ;
+	private Operator operator;
 
 	private Object compareValue;
 

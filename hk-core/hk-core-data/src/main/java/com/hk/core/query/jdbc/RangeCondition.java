@@ -24,7 +24,40 @@ public class RangeCondition<T> implements Condition {
 	public String toSqlString(List<Object> parameters) {
 		return null;
 	}
-	
-	
+
+	/**
+	 * @return the field
+	 */
+	public String getField() {
+		return field;
+	}
+
+	/**
+	 * @return the start
+	 */
+	public T getStart() {
+		return start;
+	}
+
+	/**
+	 * @return the end
+	 */
+	public T getEnd() {
+		return end;
+	}
+
+	/**
+	 * @return the includeStart
+	 */
+	public boolean isIncludeStart() {
+		return includeStart;
+	}
+
+	/**
+	 * @return the includeEnd
+	 */
+	public boolean isIncludeEnd() {
+		return includeEnd;
+	}
 
 }

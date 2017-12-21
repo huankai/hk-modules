@@ -2,6 +2,8 @@ package com.hk.core.query.jdbc;
 
 import java.util.List;
 
+import com.hk.core.query.Operator;
+
 /**
  * 
  * @author huangkai
@@ -20,9 +22,37 @@ public class RangeCondition<T> implements Condition {
 
 	private boolean includeEnd;
 
+	/**
+	 * 
+	 */
+	public RangeCondition() {
+	}
+
+	/**
+	 * @param field
+	 * @param start
+	 * @param end
+	 * @param includeStart
+	 * @param includeEnd
+	 */
+	public RangeCondition(String field, T start, T end, boolean includeStart, boolean includeEnd) {
+		this.field = field;
+		this.start = start;
+		this.end = end;
+		this.includeStart = includeStart;
+		this.includeEnd = includeEnd;
+	}
+
 	@Override
 	public String toSqlString(List<Object> parameters) {
-		return null;
+		CompositeCondition compos = new CompositeCondition();
+		if (null != start) {
+			compos.addCondition(new SimpleCondition(field, includeStart ? Operator.GTE : Operator.GT, start));
+		}
+		if (null != end) {
+			compos.addCondition(new SimpleCondition(field, includeEnd ? Operator.LTE : Operator.LT, end));
+		}
+		return compos.toSqlString(parameters);
 	}
 
 	/**
@@ -59,5 +89,42 @@ public class RangeCondition<T> implements Condition {
 	public boolean isIncludeEnd() {
 		return includeEnd;
 	}
+
+	/**
+	 * @param field the field to set
+	 */
+	public void setField(String field) {
+		this.field = field;
+	}
+
+	/**
+	 * @param start the start to set
+	 */
+	public void setStart(T start) {
+		this.start = start;
+	}
+
+	/**
+	 * @param end the end to set
+	 */
+	public void setEnd(T end) {
+		this.end = end;
+	}
+
+	/**
+	 * @param includeStart the includeStart to set
+	 */
+	public void setIncludeStart(boolean includeStart) {
+		this.includeStart = includeStart;
+	}
+
+	/**
+	 * @param includeEnd the includeEnd to set
+	 */
+	public void setIncludeEnd(boolean includeEnd) {
+		this.includeEnd = includeEnd;
+	}
+	
+	
 
 }

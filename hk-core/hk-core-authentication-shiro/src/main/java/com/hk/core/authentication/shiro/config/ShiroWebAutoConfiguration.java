@@ -4,17 +4,21 @@ import java.util.Collection;
 import java.util.List;
 
 import org.apache.shiro.mgt.SessionsSecurityManager;
+import org.apache.shiro.mgt.SubjectFactory;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.session.SessionListener;
 import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.google.common.collect.Lists;
 import com.hk.core.authentication.shiro.listeners.LogSessionListener;
+
+import io.buji.pac4j.subject.Pac4jSubjectFactory;
 
 /**
  * Shiro配置
@@ -23,34 +27,24 @@ import com.hk.core.authentication.shiro.listeners.LogSessionListener;
  * @date 2017年10月22日下午1:54:02
  */
 @Configuration
-public class ShiroWebAutoConfiguration extends org.apache.shiro.spring.config.web.autoconfigure.ShiroWebAutoConfiguration {
-	
+public class ShiroWebAutoConfiguration
+		extends org.apache.shiro.spring.config.web.autoconfigure.ShiroWebAutoConfiguration {
+
 	/**
 	 * 会话30分钟 (毫秒)
 	 */
 	@Value("#{@environment['shiro.sessionManager.globalSessionTimeout'] ?: 3600000 }")
 	protected long globalSessionTimeout;
 
-	/**
-	 * 
-	 * @return
-	 */
-//	@Bean
-//	@Override
-//	public SessionFactory sessionFactory() {
-//		return new StatusSessionFactory();
-//	}
-//	
-	/**
-	 * 
-	 * @return
-	 */
-//	@Bean
-//	@Override
-//	public SessionDAO sessionDAO() {
-//		return new MemorySessionDAO();
-//	}
-	
+	@Bean
+	@Override
+	@ConditionalOnClass(Pac4jSubjectFactory.class)
+	protected SubjectFactory subjectFactory() {
+		return new Pac4jSubjectFactory();
+	}
+
+	/* ********************* Shiro Configuration ************************* */
+
 	/**
 	 * 
 	 * @param realms
@@ -64,7 +58,7 @@ public class ShiroWebAutoConfiguration extends org.apache.shiro.spring.config.we
 		securityManager.setSessionManager(sessionManager());
 		return securityManager;
 	}
-	
+
 	/**
 	 * 
 	 * @return
@@ -90,6 +84,5 @@ public class ShiroWebAutoConfiguration extends org.apache.shiro.spring.config.we
 		Collection<SessionListener> listeners = Lists.newArrayList(new LogSessionListener());
 		return listeners;
 	}
-	
 
 }

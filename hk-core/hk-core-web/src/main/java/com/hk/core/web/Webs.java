@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -61,6 +62,39 @@ public class Webs {
 	 */
 	public static <T> T getAttributeFromSession(String name) {
 		return getAttribute(name, RequestAttributes.SCOPE_SESSION);
+	}
+	
+	/**
+	 * 从Session请求域中设置属性值
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public static void setAttributeFromSession(String name,Object value) {
+		setAttributeFromSession(name, value, false);
+		
+	}
+	/**
+	 * 从Session请求域中设置属性值
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public static void setAttributeFromSession(String name,Object value,boolean create) {
+		HttpSession session = getRequestAttribute().getRequest().getSession(create);
+		if(null != session) {
+			session.setAttribute(name, value);
+		}
+	}
+	
+	/**
+	 * 从Session请求域中设置属性值
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public static void removeAttributeFromSession(String name) {
+		getRequestAttribute().removeAttribute(name, RequestAttributes.SCOPE_SESSION);
 	}
 
 	/**

@@ -67,7 +67,7 @@ public class PmsApplication /* extends SpringBootServletInitializer */ {
 		chainDefinition.addPathDefinition("/resources/**", "anon");// 静态资源过滤
 		chainDefinition.addPathDefinition("/favicon.ico", "anon");// ico过滤，不配置可能会出现登陆成功后下载ico的问题
 		chainDefinition.addPathDefinition("/kaptcha.jpg", "anon"); // 验证码过滤
-		chainDefinition.addPathDefinition("/logout", "logout");// logout 过滤器
+//		chainDefinition.addPathDefinition("/logout", "logout");// logout 过滤器
 		chainDefinition.addPathDefinition("/**", "authc");// 其它都需要验证
 		return chainDefinition;
 	}

@@ -13,6 +13,11 @@ import com.google.common.collect.Lists;
 import com.hk.commons.util.CollectionUtils;
 import com.hk.core.authentication.api.UserPrincipal;
 
+/**
+ * 
+ * @author huangkai
+ * @date 2017年12月21日下午5:45:54
+ */
 @SuppressWarnings("serial")
 public class SecurityUserPrincipal extends UserPrincipal implements UserDetails {
 

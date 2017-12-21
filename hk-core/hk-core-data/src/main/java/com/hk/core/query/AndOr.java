@@ -4,4 +4,8 @@ public enum AndOr {
 
 	AND, OR;
 
+	public String toSqlString() {
+		return toString();
+	}
+
 }

@@ -48,7 +48,7 @@ public class User extends ModelHolder.UserBase {
     }
 
 	public boolean locked() {
-		final Integer userStatus = getUserStatus();
+		Integer userStatus = getUserStatus();
 		return null == userStatus || userStatus.intValue() == EnumDisplayUtils.getDisplayOrder(UserStatus.LOCKED);
 	}
 

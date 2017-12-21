@@ -11,6 +11,7 @@ import org.pac4j.core.engine.CallbackLogic;
 import org.pac4j.core.engine.DefaultCallbackLogic;
 import org.pac4j.core.engine.DefaultSecurityLogic;
 import org.pac4j.core.engine.SecurityLogic;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -56,8 +57,12 @@ public class AuthenticationShiroPac4jAutoConfiguration {
 	}
 
 	/* ************Core pac4j configuation ************ */
+	
+	@Autowired
+	private List<Client> clientList;
+	
 	@Bean
-	public Config config(List<Client> clientList) {
+	public Config config() {
 		Config config = new Config(clientList);
 		config.setSessionStore(sessionStore());
 		return config;
@@ -65,7 +70,7 @@ public class AuthenticationShiroPac4jAutoConfiguration {
 
 	@Bean
 	@ConditionalOnMissingBean(value = Clients.class)
-	public Clients clients(List<Client> clientList) {
+	public Clients clients() {
 		Clients clients = new Clients();
 		clients.setCallbackUrl("/callback");
 		clients.setClients(clientList);
@@ -114,7 +119,7 @@ public class AuthenticationShiroPac4jAutoConfiguration {
 	 */
 	@Bean
 	@ConditionalOnMissingBean(value = SecurityLogic.class)
-	private SecurityLogic<Object, J2EContext> defaultSecurityLogic() {
+	public SecurityLogic<Object, J2EContext> defaultSecurityLogic() {
 		return new DefaultSecurityLogic<>();
 	}
 

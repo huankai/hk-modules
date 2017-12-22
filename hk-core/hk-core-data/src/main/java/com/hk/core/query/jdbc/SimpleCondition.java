@@ -55,8 +55,7 @@ public class SimpleCondition implements Condition {
 	 * @param compareValue
 	 */
 	public SimpleCondition(String field, Object compareValue) {
-		this.field = field;
-		this.compareValue = compareValue;
+		this(field, Operator.EQ, compareValue);
 	}
 
 	/**

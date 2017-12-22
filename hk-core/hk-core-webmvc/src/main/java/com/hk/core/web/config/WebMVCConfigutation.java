@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.MediaType;
@@ -25,6 +26,8 @@ import com.hk.commons.converters.StringToLocalTimeConverter;
 import com.hk.commons.converters.StringToYearConverter;
 import com.hk.commons.fastjson.JsonUtils;
 import com.hk.core.authentication.api.SecurityContext;
+import com.hk.core.web.ServletContextHolder;
+import com.hk.core.web.SpringContextHolder;
 import com.hk.core.web.interceptors.RequestInterceptor;
 
 /**
@@ -35,15 +38,25 @@ import com.hk.core.web.interceptors.RequestInterceptor;
 public class WebMVCConfigutation extends WebMvcConfigurerAdapter {
 
 	/**
-     * <pre>
-     * 静态资源地址
-     * </pre>
-     */
-    @Value("${hk.web.resuources.url:/}")
+	 * <pre>
+	 * 静态资源地址
+	 * </pre>
+	 */
+	@Value("${hk.web.resuources.url:/}")
 	private String resourceUrl;
-    
-    @Autowired
-    private SecurityContext securityContext;
+
+	@Autowired
+	private SecurityContext securityContext;
+
+	@Bean
+	public SpringContextHolder springContextHolder() {
+		return new SpringContextHolder();
+	}
+
+	@Bean
+	public ServletContextHolder servletContextHolder() {
+		return new ServletContextHolder();
+	}
 
 	/**
 	 * 添加fastJson

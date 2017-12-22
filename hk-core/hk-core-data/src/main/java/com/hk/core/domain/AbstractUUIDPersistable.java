@@ -32,7 +32,11 @@ public class AbstractUUIDPersistable implements Persistable<String> {
 		return id;
 	}
 
-	protected void setId(String id) {
+	/**
+	 * 
+	 * @param id
+	 */
+	public void setId(String id) {
 		this.id = id;
 	}
 

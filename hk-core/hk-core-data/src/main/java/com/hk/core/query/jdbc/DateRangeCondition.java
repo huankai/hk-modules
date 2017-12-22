@@ -1,12 +1,10 @@
-package com.hk.core.query;
+package com.hk.core.query.jdbc;
 
 import java.util.Calendar;
 import java.util.List;
 
 import com.hk.commons.annotations.EnumDisplay;
 import com.hk.commons.util.date.DateTimeUtils;
-import com.hk.core.query.jdbc.Condition;
-import com.hk.core.query.jdbc.RangeCondition;
 
 /**
  * 
@@ -181,12 +179,12 @@ public class DateRangeCondition implements Condition {
 			end = this.end;
 			break;
 		}
-		RangeCondition<Calendar> range = new RangeCondition<Calendar>(field, start, end, true, false);
+		RangeCondition<Calendar> condition = new RangeCondition<Calendar>(field, start, end, true, false);
 		if (end != null) {
 			end.add(Calendar.DATE, 1);
-			range.setEnd(end);
+			condition.setEnd(end);
 		}
-		return range.toSqlString(parameters);
+		return condition.toSqlString(parameters);
 	}
 
 }

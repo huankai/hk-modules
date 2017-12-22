@@ -8,6 +8,12 @@ import com.google.common.collect.Sets;
 import com.hk.commons.util.ArrayUtils;
 import com.hk.core.query.Order;
 
+/**
+ * 查询参数
+ * 
+ * @author huangkai
+ * @date 2017年12月22日下午12:30:52
+ */
 public final class SelectArguments {
 
 	/**
@@ -34,6 +40,8 @@ public final class SelectArguments {
 	 * 查询表名
 	 */
 	private String from;
+
+	private CompositeCondition conditions = new CompositeCondition();
 
 	/**
 	 * Group by
@@ -83,12 +91,25 @@ public final class SelectArguments {
 	public void setFields(Set<String> fields) {
 		this.fields = fields;
 	}
+	
+	public void setFields(String... fields) {
+		if(ArrayUtils.isNotEmpty(fields)) {
+			this.fields = Sets.newHashSet(fields);
+		}
+	}
 
 	/**
 	 * @return the from
 	 */
 	public String getFrom() {
 		return from;
+	}
+
+	/**
+	 * @return the conditions
+	 */
+	public CompositeCondition getConditions() {
+		return conditions;
 	}
 
 	public List<Order> getOrders() {

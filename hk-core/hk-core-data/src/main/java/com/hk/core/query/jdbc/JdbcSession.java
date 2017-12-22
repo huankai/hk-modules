@@ -31,41 +31,80 @@ public class JdbcSession {
 
 	private Dialect dialect;
 
-	public Dialect getDialect() {
-		return dialect;
+	/**
+	 * 
+	 */
+	public JdbcSession() {
 	}
 
-	public void setDialect(Dialect dialect) {
+	/**
+	 * @param jdbcTemplate
+	 * @param namedParameterJdbcTemplate
+	 * @param dialect
+	 */
+	public JdbcSession(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate,
+			Dialect dialect) {
+		this.jdbcTemplate = jdbcTemplate;
+		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
 		this.dialect = dialect;
 	}
 
-	public JdbcTemplate getJdbcTemplate() {
+	protected Dialect getDialect() {
+		return dialect;
+	}
+
+	protected void setDialect(Dialect dialect) {
+		this.dialect = dialect;
+	}
+
+	protected JdbcTemplate getJdbcTemplate() {
 		return jdbcTemplate;
 	}
 
-	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+	protected void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-	public NamedParameterJdbcTemplate getNamedParameterJdbcTemplate() {
+	protected NamedParameterJdbcTemplate getNamedParameterJdbcTemplate() {
 		return namedParameterJdbcTemplate;
 	}
 
-	public void setNamedParameterJdbcTemplate(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+	protected void setNamedParameterJdbcTemplate(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
 		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
 	}
 
+	/**
+	 * 
+	 * @param arguments
+	 * @param retriveRowCount
+	 * @return
+	 */
 	public ListResult<Map<String, Object>> queryForList(SelectArguments arguments, boolean retriveRowCount) {
 		return queryForList(arguments, retriveRowCount, new ColumnMapRowMapper());
 	}
 
+	/**
+	 * 查询返回对象，支持驼峰命名的属性
+	 * 
+	 * @param arguments
+	 * @param retriveRowCount
+	 * @param clazz
+	 * @return
+	 */
 	public <T> ListResult<T> queryForList(SelectArguments arguments, boolean retriveRowCount, Class<T> clazz) {
 		BeanPropertyRowMapper<T> rowMapper = BeanPropertyRowMapper.newInstance(clazz);
 		rowMapper.setConversionService(ConverterUtils.DEFAULT_CONVERSIONSERVICE);
 		return queryForList(arguments, retriveRowCount, rowMapper);
 	}
 
-	public <T> ListResult<T> queryForList(SelectArguments arguments, boolean retriveRowCount, RowMapper<T> rowMapper) {
+	/**
+	 * 
+	 * @param arguments
+	 * @param retriveRowCount
+	 * @param rowMapper
+	 * @return
+	 */
+	private <T> ListResult<T> queryForList(SelectArguments arguments, boolean retriveRowCount, RowMapper<T> rowMapper) {
 		SelectStatement stmt = buildSelect(arguments);
 		Object[] params = stmt.parameters.toArray();
 		List<T> queryResult = queryForList(stmt.selectSql.toString(), rowMapper, arguments.getStartRowIndex(),
@@ -77,7 +116,14 @@ public class JdbcSession {
 		return new ListResult<>(rowCount, queryResult);
 	}
 
-	private <T> T queryForScalar(String sql, Class<T> clazz, Object... args) {
+	/**
+	 * 
+	 * @param sql
+	 * @param clazz
+	 * @param args
+	 * @return
+	 */
+	protected <T> T queryForScalar(String sql, Class<T> clazz, Object... args) {
 		return jdbcTemplate.queryForObject(sql, clazz, args);
 	}
 
@@ -100,19 +146,29 @@ public class JdbcSession {
 		String fields = CollectionUtils.isEmpty(arguments.getFields()) ? " * "
 				: StringUtils.join(arguments.getFields(), ",");
 		sql.append("SELECT ");
-		countSql.append("SELECT count(*) FROM ");
+		countSql.append("SELECT ");
 		if (arguments.isDistinct()) {
-			sql.append(" DISTINCT ");
-			countSql.append(" DISTINCT ");
+			sql.append("DISTINCT ");
+			countSql.append("DISTINCT ");
 		}
 		sql.append(fields);
 		sql.append(" FROM ");
+		countSql.append("count(*) FROM ");
 
 		sql.append(arguments.getFrom());
 		countSql.append(arguments.getFrom());
 
 		List<Object> parameters = Lists.newArrayList();
-
+		CompositeCondition condition = arguments.getConditions();
+		if (null != condition) {
+			String conditionSql = condition.toSqlString(parameters);
+			if (StringUtils.isNotEmpty(conditionSql)) {
+				sql.append(" WHERE ");
+				sql.append(conditionSql);
+				countSql.append(" WHERE ");
+				countSql.append(conditionSql);
+			}
+		}
 		Set<String> groupBys = arguments.getGroupBys();
 		if (CollectionUtils.isNotEmpty(groupBys)) {
 			String groupBySql = StringUtils.join(groupBys, ",");
@@ -122,14 +178,15 @@ public class JdbcSession {
 			countSql.append(groupBySql);
 		}
 
-		if (CollectionUtils.isNotEmpty(arguments.getOrders())) {
+		List<Order> orders = arguments.getOrders();
+		if (CollectionUtils.isNotEmpty(orders)) {
 			sql.append(" ORDER BY ");
 			int index = 0;
-			for (Order o : arguments.getOrders()) {
+			for (Order order : orders) {
 				if (index++ > 0) {
 					sql.append(",");
 				}
-				sql.append(o.toString());
+				sql.append(order.toString());
 			}
 		}
 		return new SelectStatement(sql, countSql, parameters);

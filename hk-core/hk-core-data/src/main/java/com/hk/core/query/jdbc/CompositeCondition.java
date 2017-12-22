@@ -6,6 +6,7 @@ package com.hk.core.query.jdbc;
 import java.util.List;
 
 import com.google.common.collect.Lists;
+import com.hk.commons.util.CollectionUtils;
 import com.hk.commons.util.StringUtils;
 import com.hk.core.query.AndOr;
 
@@ -71,6 +72,14 @@ public class CompositeCondition implements Condition {
 	 */
 	public void addCondition(Condition condition) {
 		conditions.add(condition);
+	}
+
+	/**
+	 * 
+	 * @param conditions
+	 */
+	public void addConditions(Condition... conditions) {
+		CollectionUtils.addAll(this.conditions, conditions);
 	}
 
 	/**

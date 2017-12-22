@@ -24,17 +24,13 @@ import com.hk.core.query.jdbc.dialect.MySQLDialect;
 public class CoreDataAutoConfiguration {
 
 	@Bean
-	public JdbcSession jdbcSession(Dialect dialect, JdbcTemplate jdbcTemplate,
-			NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
-		JdbcSession jdbcSession = new JdbcSession();
-		jdbcSession.setJdbcTemplate(jdbcTemplate);
-		jdbcSession.setNamedParameterJdbcTemplate(namedParameterJdbcTemplate);
-		jdbcSession.setDialect(dialect);
-		return jdbcSession;
+	public JdbcSession jdbcSession(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate,
+			Dialect dialect) {
+		return new JdbcSession(jdbcTemplate, namedParameterJdbcTemplate, dialect);
 	}
 
 	@Bean
-	@ConditionalOnMissingBean
+	@ConditionalOnMissingBean(value = Dialect.class)
 	public Dialect Dialect() {
 		return new MySQLDialect();
 	}

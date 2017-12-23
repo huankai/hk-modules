@@ -2,26 +2,35 @@ package com.hk.core.query.jdbc;
 
 import java.util.List;
 
+/**
+ * 查詢结果
+ */
 public class ListResult<T> {
 
-	private long rowCount;
+	/**
+	 * 查詢总记录数
+	 */
+	private long totalRowCount;
 
+	/**
+	 * 结果集
+	 */
 	private List<T> result;
 
 	/**
 	 * @param rowCount
 	 * @param result
 	 */
-	public ListResult(long rowCount, List<T> result) {
-		this.rowCount = rowCount;
+	public ListResult(long totalRowCount, List<T> result) {
+		this.totalRowCount = totalRowCount;
 		this.result = result;
 	}
 
 	/**
 	 * @return the rowCount
 	 */
-	public long getRowCount() {
-		return rowCount;
+	public long getTotalRowCount() {
+		return totalRowCount;
 	}
 
 	/**

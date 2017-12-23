@@ -28,11 +28,36 @@ public abstract class BaseDaoImpl {
 		return entityManager;
 	}
 
+	/**
+	 * 
+	 * @param arguments
+	 * @param retriveRowCount
+	 * @return
+	 */
 	public ListResult<Map<String, Object>> queryForList(SelectArguments arguments, boolean retriveRowCount) {
 		return jdbcSession.queryForList(arguments, retriveRowCount);
 	}
 
+	/**
+	 * 
+	 * @param arguments
+	 * @param retriveRowCount
+	 * @param clazz
+	 * @return
+	 */
 	public <T> ListResult<T> queryForList(SelectArguments arguments, boolean retriveRowCount, Class<T> clazz) {
 		return jdbcSession.queryForList(arguments, retriveRowCount, clazz);
 	}
+
+	/**
+	 * 查询唯一
+	 * 
+	 * @param arguments
+	 * @param clazz
+	 * @return
+	 */
+	public final <T> T queryForObject(SelectArguments arguments, Class<T> clazz) {
+		return jdbcSession.queryForObject(arguments, clazz);
+	}
+
 }

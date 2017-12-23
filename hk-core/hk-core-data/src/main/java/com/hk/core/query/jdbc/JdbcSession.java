@@ -137,7 +137,7 @@ public class JdbcSession {
 	 * @param args
 	 * @return
 	 */
-	protected <T> T queryForScalar(String sql, Class<T> clazz, Object... args) {
+	private <T> T queryForScalar(String sql, Class<T> clazz, Object... args) {
 		return jdbcTemplate.queryForObject(sql, clazz, args);
 	}
 

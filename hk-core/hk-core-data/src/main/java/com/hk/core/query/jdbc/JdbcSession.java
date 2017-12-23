@@ -84,6 +84,20 @@ public class JdbcSession {
 	}
 
 	/**
+	 * 查询唯一
+	 * 
+	 * @param arguments
+	 * @param clazz
+	 * @return
+	 */
+	public final <T> T queryForObject(SelectArguments arguments, Class<T> clazz) {
+		SelectStatement statement = buildSelect(arguments);
+		BeanPropertyRowMapper<T> rowMapper = BeanPropertyRowMapper.newInstance(clazz);
+		rowMapper.setConversionService(ConverterUtils.DEFAULT_CONVERSIONSERVICE);
+		return jdbcTemplate.queryForObject(statement.selectSql.toString(), rowMapper, statement.parameters.toArray());
+	}
+
+	/**
 	 * 查询返回对象，支持驼峰命名的属性
 	 * 
 	 * @param arguments

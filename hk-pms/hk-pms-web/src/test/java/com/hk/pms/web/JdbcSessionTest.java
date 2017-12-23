@@ -107,6 +107,17 @@ public class JdbcSessionTest {
 		ListResult<Map<String, Object>> queryResult = jdbcSession.queryForList(arguments, true);
 		System.out.println(JsonUtils.toJSONString(queryResult));
 	}
+	
+	@Test
+	public void queryForObjectTest() {
+		SelectArguments arguments = new SelectArguments();
+		arguments.setPageSize(10);
+		arguments.setFields("id", "org_id","created_date");
+		arguments.setFrom("sys_user");
+		arguments.getConditions().addCondition(new SimpleCondition("id", "402881e66063253601606325dece0000"));
+		User user = jdbcSession.queryForObject(arguments, User.class);
+		System.out.println(JsonUtils.toJSONString(user));
+	}
 
 	/**
 	 * <pre>

@@ -23,7 +23,7 @@
 		<logger name="com.hk" level="debug" additivity="false">
 			<appender-ref ref="Console" />
         </logger>
-		<logger name="org.springframework.jdbc" level="debug" additivity="false">
+		<logger name="org.springframework.jdbc.core" level="debug" additivity="false">
 			<appender-ref ref="Console" />
         </logger>
 		

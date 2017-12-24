@@ -2,7 +2,6 @@ package com.hk.pms.core.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -17,12 +16,10 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 public class SysChildCode extends ModelHolder.SysChildCodeBase {
 
-    /**
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -6562442354700499998L;
-	
-	@Transient
-    private SysBaseCode sysBaseCode;
-	
+
+
 }

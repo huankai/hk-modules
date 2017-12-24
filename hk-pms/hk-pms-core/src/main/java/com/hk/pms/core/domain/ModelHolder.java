@@ -1,9 +1,14 @@
 package com.hk.pms.core.domain;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToMany;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.hk.core.domain.AbstractAuditable;
@@ -20,6 +25,25 @@ import lombok.EqualsAndHashCode;
 public class ModelHolder {
 
 	private ModelHolder() {
+
+	}
+
+	@Data
+	@EqualsAndHashCode(callSuper = false)
+	@MappedSuperclass
+	public static class CityBase extends AbstractUUIDPersistable {
+
+		@Column(name = "code")
+		private String code;
+
+		@Column(name = "name")
+		private String name;
+
+		@Column(name = "parent_id")
+		private String parentId;
+
+		@OneToMany(fetch = FetchType.LAZY)
+		private Set<CityBase> childs;
 
 	}
 
@@ -153,8 +177,8 @@ public class ModelHolder {
 	@MappedSuperclass
 	public static class SysChildCodeBase extends AbstractUUIDPersistable {
 
-		@Column(name = "base_code_id")
-		private String baseCodeId;
+		@ManyToOne(optional = false)
+		private SysBaseCode sysBaseCode;
 
 		@Column(name = "child_code")
 		private String childCode;
@@ -184,8 +208,12 @@ public class ModelHolder {
 	@MappedSuperclass
 	public static class SysBaseCodeBase extends AbstractUUIDPersistable {
 
-		@Column(name = "base_code")
-		private String baseCode;
+		/**
+		 *
+		 */
+		@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
+		@JoinColumn(name = "base_code_id", referencedColumnName = "id")
+		private Set<SysChildCode> childCodes;
 
 		@Column(name = "code_name")
 		private String codeName;

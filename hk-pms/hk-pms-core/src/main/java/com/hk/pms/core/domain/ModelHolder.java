@@ -36,14 +36,22 @@ public class ModelHolder {
 		@Column(name = "code")
 		private String code;
 
-		@Column(name = "name")
-		private String name;
+		@Column(name = "full_name")
+		private String fullName;
 
-		@Column(name = "parent_id")
-		private String parentId;
+		@Column(name = "short_name")
+		private String shortName;
 
+		/**
+		 * 上组
+		 */
+		private City parent;
+
+		/**
+		 * 子级
+		 */
 		@OneToMany(fetch = FetchType.LAZY)
-		private Set<CityBase> childs;
+		private Set<City> childs;
 
 	}
 

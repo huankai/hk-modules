@@ -37,8 +37,9 @@ public class UserRepositoryTest {
 	@Test()
 	@Transactional(readOnly = true)
 	public void findUniqueByLoginNameTest() {
-		Optional<User> user = userRepository.findUniqueByLoginName("semail@xx.com");
+		Optional<User> user = userRepository.findUniqueByLoginName("admin");
 		if(user.isPresent()) {
+			System.out.println(user.get().getEmail());
 			System.out.println(JsonUtils.toJSONString(user.get()));
 		}
 	}

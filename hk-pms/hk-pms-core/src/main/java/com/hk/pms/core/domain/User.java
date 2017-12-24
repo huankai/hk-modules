@@ -1,6 +1,12 @@
 package com.hk.pms.core.domain;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.hk.commons.annotations.EnumDisplay;
@@ -25,27 +31,35 @@ public class User extends ModelHolder.UserBase {
 	 *
 	 */
 	private static final long serialVersionUID = -2561707826944989624L;
-	
+
 	public enum UserStatus {
 
-        /**
-         * 禁用
-         */
-        @EnumDisplay(value = "禁用",order = 0)
-        DISABLE,
+		/**
+		 * 禁用
+		 */
+		@EnumDisplay(value = "禁用", order = 0)
+		DISABLE,
 
-        /**
-         *启用
-         */
-        @EnumDisplay(value = "启用",order = 1)
-        ENABLE,
+		/**
+		 * 启用
+		 */
+		@EnumDisplay(value = "启用", order = 1)
+		ENABLE,
 
-        /**
-         * 锁定
-         */
-        @EnumDisplay(value = "锁定",order = 9)
-        LOCKED
-    }
+		/**
+		 * 锁定
+		 */
+		@EnumDisplay(value = "锁定", order = 9)
+		LOCKED
+	}
+
+	/**
+	 * 角色
+	 */
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = UserRole.TABLE_NAME, inverseJoinColumns = @JoinColumn(nullable = false,updatable = false,name = "role_id",referencedColumnName = "id"),
+		joinColumns = @JoinColumn(nullable = false, updatable = false, name = "user_id", referencedColumnName = "id"))
+	private Set<Role> roles;
 
 	public boolean locked() {
 		Integer userStatus = getUserStatus();

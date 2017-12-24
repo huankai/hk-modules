@@ -13,10 +13,12 @@ import lombok.EqualsAndHashCode;
  * @date 2017年10月23日下午1:33:13
  */
 @Entity
-@Table(name = "sys_role_permission")
+@Table(name = RolePermission.TABLE_NAME)
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class RolePermission extends ModelHolder.RolePermissionBase {
+	
+	static final String TABLE_NAME = "sys_role_permission";
 
 	/**
 	 * 

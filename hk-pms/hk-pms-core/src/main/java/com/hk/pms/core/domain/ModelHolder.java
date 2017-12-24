@@ -23,9 +23,9 @@ public class ModelHolder {
 
 	}
 
-	@MappedSuperclass
 	@Data
 	@EqualsAndHashCode(callSuper = false)
+	@MappedSuperclass
 	public static class SysDeptResponBase extends AbstractUUIDPersistable {
 
 		@Column(name = "org_id")
@@ -45,9 +45,9 @@ public class ModelHolder {
 
 	}
 
-	@MappedSuperclass
 	@Data
 	@EqualsAndHashCode(callSuper = false)
+	@MappedSuperclass
 	public static class SysUserThirdBase extends AbstractUUIDPersistable {
 
 		@Column(name = "user_id")
@@ -70,9 +70,9 @@ public class ModelHolder {
 
 	}
 
-	@MappedSuperclass
 	@Data
 	@EqualsAndHashCode(callSuper = false)
+	@MappedSuperclass
 	public static class SysLoginLogBase extends AbstractUUIDPersistable {
 
 		@Column(name = "user_id")
@@ -104,9 +104,9 @@ public class ModelHolder {
 	/**
 	 * 
 	 */
-	@MappedSuperclass
 	@Data
 	@EqualsAndHashCode(callSuper = false)
+	@MappedSuperclass
 	public static class SysOrgDeptBase extends AbstractUUIDPersistable {
 
 		@Column(name = "org_id")
@@ -126,9 +126,9 @@ public class ModelHolder {
 	/**
 	 * 机构基本信息
 	 */
-	@MappedSuperclass
 	@Data
 	@EqualsAndHashCode(callSuper = false)
+	@MappedSuperclass
 	public static class SysOrgBase extends AbstractUUIDPersistable {
 
 		@Column(name = "parent_id")
@@ -148,9 +148,9 @@ public class ModelHolder {
 
 	}
 
-	@MappedSuperclass
 	@Data
 	@EqualsAndHashCode(callSuper = false)
+	@MappedSuperclass
 	public static class SysChildCodeBase extends AbstractUUIDPersistable {
 
 		@Column(name = "base_code_id")
@@ -179,9 +179,9 @@ public class ModelHolder {
 
 	}
 
-	@MappedSuperclass
 	@Data
 	@EqualsAndHashCode(callSuper = false)
+	@MappedSuperclass
 	public static class SysBaseCodeBase extends AbstractUUIDPersistable {
 
 		@Column(name = "base_code")
@@ -195,9 +195,9 @@ public class ModelHolder {
 
 	}
 
-	@MappedSuperclass
 	@Data
 	@EqualsAndHashCode(callSuper = false)
+	@MappedSuperclass
 	public static class UserSettingBase extends AbstractUUIDPersistable {
 
 		@Column(name = "user_id")
@@ -217,9 +217,9 @@ public class ModelHolder {
 	/**
 	 * 系统
 	 */
-	@MappedSuperclass
 	@Data
 	@EqualsAndHashCode(callSuper = false)
+	@MappedSuperclass
 	public static class SysAppBase extends AbstractUUIDPersistable {
 
 		@Column(name = "app_code")
@@ -252,9 +252,9 @@ public class ModelHolder {
 
 	}
 
-	@MappedSuperclass
 	@Data
 	@EqualsAndHashCode(callSuper = false)
+	@MappedSuperclass
 	public static class RolePermissionBase extends AbstractUUIDPersistable {
 
 		@Column(name = "role_id")
@@ -265,9 +265,9 @@ public class ModelHolder {
 
 	}
 
-	@MappedSuperclass
 	@Data
 	@EqualsAndHashCode(callSuper = false)
+	@MappedSuperclass
 	public static class UserRoleBase extends AbstractUUIDPersistable {
 
 		@Column(name = "user_id")
@@ -278,9 +278,9 @@ public class ModelHolder {
 
 	}
 
-	@MappedSuperclass
 	@Data
 	@EqualsAndHashCode(callSuper = false)
+	@MappedSuperclass
 	public static class RoleBase extends AbstractUUIDPersistable {
 
 		@Column(name = "app_id")
@@ -294,9 +294,9 @@ public class ModelHolder {
 
 	}
 
-	@MappedSuperclass
 	@Data
 	@EqualsAndHashCode(callSuper = false)
+	@MappedSuperclass
 	public static class PermissionBase extends AbstractUUIDPersistable {
 
 		@Column(name = "app_id")
@@ -310,9 +310,9 @@ public class ModelHolder {
 
 	}
 
-	@MappedSuperclass
 	@Data
 	@EqualsAndHashCode(callSuper = false)
+	@MappedSuperclass
 	public static class UserBase extends AbstractAuditable {
 
 		@Column(name = "org_id")

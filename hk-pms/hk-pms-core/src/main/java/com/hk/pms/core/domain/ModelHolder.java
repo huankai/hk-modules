@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.hk.core.domain.AbstractAuditable;
@@ -33,24 +34,47 @@ public class ModelHolder {
 	@MappedSuperclass
 	public static class CityBase extends AbstractUUIDPersistable {
 
+		/**
+		 * 行政代码
+		 */
 		@Column(name = "code")
 		private String code;
 
+		/**
+		 * 全称
+		 */
 		@Column(name = "full_name")
 		private String fullName;
 
+		/**
+		 * 简称
+		 */
 		@Column(name = "short_name")
 		private String shortName;
 
 		/**
-		 * 上组
+		 * 英文名
 		 */
+		@Column(name = "english_name")
+		private String englishName;
+
+		/**
+		 * 邮编
+		 */
+		@Column(name = "post_office")
+		private String postOffice;
+
+		/**
+		 * 上级
+		 */
+		@ManyToOne(fetch = FetchType.LAZY)
 		private City parent;
 
 		/**
 		 * 子级
 		 */
 		@OneToMany(fetch = FetchType.LAZY)
+		@JoinColumn(name = "parent_id", referencedColumnName = "id")
 		private Set<City> childs;
 
 	}
@@ -60,11 +84,8 @@ public class ModelHolder {
 	@MappedSuperclass
 	public static class SysDeptResponBase extends AbstractUUIDPersistable {
 
-		@Column(name = "org_id")
-		private String orgId;
-
-		@Column(name = "dept_id")
-		private String deptId;
+		@ManyToOne(optional = false)
+		private SysOrgDept dept;
 
 		@Column(name = "user_id")
 		private String userId;
@@ -82,8 +103,8 @@ public class ModelHolder {
 	@MappedSuperclass
 	public static class SysUserThirdBase extends AbstractUUIDPersistable {
 
-		@Column(name = "user_id")
-		private String userId;
+		@OneToOne
+		private User user;
 
 		@Column(name = "user_third_name")
 		private String userThirdName;
@@ -107,14 +128,8 @@ public class ModelHolder {
 	@MappedSuperclass
 	public static class SysLoginLogBase extends AbstractUUIDPersistable {
 
-		@Column(name = "user_id")
-		private String userId;
-
-		@Column(name = "user_type")
-		private Integer userType;
-
-		@Column(name = "user_name")
-		private String userName;
+		@ManyToOne(optional = false)
+		private User user;
 
 		@Column(name = "ip_address")
 		private String ipAddress;
@@ -141,8 +156,8 @@ public class ModelHolder {
 	@MappedSuperclass
 	public static class SysOrgDeptBase extends AbstractUUIDPersistable {
 
-		@Column(name = "org_id")
-		private String orgId;
+		@ManyToOne(optional = false)
+		private SysOrg sysOrg;
 
 		@Column(name = "dept_code")
 		private String deptCode;
@@ -163,8 +178,17 @@ public class ModelHolder {
 	@MappedSuperclass
 	public static class SysOrgBase extends AbstractUUIDPersistable {
 
-		@Column(name = "parent_id")
-		private String parentId;
+		/**
+		 * 上级
+		 */
+		@ManyToOne(optional = false)
+		private SysOrg parent;
+
+		/**
+		 * 子级
+		 */
+		@OneToMany(fetch = FetchType.LAZY)
+		private Set<SysOrg> childs;
 
 		@Column(name = "org_code")
 		private String orgCode;
@@ -351,8 +375,11 @@ public class ModelHolder {
 	@MappedSuperclass
 	public static class UserBase extends AbstractAuditable {
 
-		@Column(name = "org_id")
-		private String orgId;
+		/**
+		 * 
+		 */
+		@ManyToOne(optional = false)
+		private SysOrg sosOrg;
 
 		@Column(name = "user_name")
 		private String userName;

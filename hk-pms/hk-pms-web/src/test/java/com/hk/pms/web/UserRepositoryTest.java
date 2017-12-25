@@ -66,7 +66,7 @@ public class UserRepositoryTest {
 	@Test()
 	public void exampleTest() {
 		User user = new User();
-		user.setOrgId("1");
+//		user.setOrgId("1");
 		List<User> users = userRepository.findAll(Example.of(user));
 		System.out.println(JsonUtils.toJSONString(users));
 		System.err.println("--------------");
@@ -90,7 +90,7 @@ public class UserRepositoryTest {
 	@Test
 	public void save() {
 		User user = new User();
-		user.setOrgId("1");
+//		user.setOrgId("1");
 		user.setNickName("sadmin_nicke");
 		user.setBrithday(LocalDate.now());
 		user.setEmail("semail@xx.com");
@@ -114,7 +114,7 @@ public class UserRepositoryTest {
 		List<User> users = Lists.newArrayList();
 		for (int i = 0; i < 10000; i++) {
 			User user = new User();
-			user.setOrgId("1");
+//			user.setOrgId("1");
 			user.setNickName("sadmin_nicke" + i);
 			user.setBrithday(LocalDate.now());
 			user.setEmail("semail@xx.com" + i);

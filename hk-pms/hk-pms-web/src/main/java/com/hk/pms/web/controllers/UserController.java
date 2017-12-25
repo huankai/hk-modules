@@ -21,7 +21,7 @@ public class UserController {
 	@RequestMapping("save")
 	public @ResponseBody User save() {
 		User user = new User();
-		user.setOrgId("1");
+//		user.setOrgId("1");
 		user.setNickName("sadmin_nicke");
 		user.setBrithday(LocalDate.now());
 		user.setEmail("semails@xx.com");

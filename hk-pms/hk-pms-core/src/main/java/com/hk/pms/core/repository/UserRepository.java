@@ -1,6 +1,5 @@
 package com.hk.pms.core.repository;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -34,14 +33,14 @@ public interface UserRepository extends StringRepository<User>, CustomUserReposi
 	 */
 	Stream<User> findByUserType(Integer type);
 
-	/**
-	 *
-	 * 使用 List 作为返回值类型可没有事物支持
-	 * 
-	 * @param orgId
-	 * @return
-	 */
-	List<User> findByOrgId(String orgId);
+//	/**
+//	 *
+//	 * 使用 List 作为返回值类型可没有事物支持
+//	 * 
+//	 * @param orgId
+//	 * @return
+//	 */
+//	List<User> findByOrgId(String orgId);
 
 	/**
 	 * 

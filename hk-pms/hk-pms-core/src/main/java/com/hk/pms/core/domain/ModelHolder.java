@@ -1,7 +1,7 @@
 package com.hk.pms.core.domain;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.FetchType;
@@ -32,7 +32,7 @@ public class ModelHolder {
 	@Data
 	@EqualsAndHashCode(callSuper = false)
 	@MappedSuperclass
-	public static class CityBase extends AbstractUUIDPersistable {
+	public static class CityBase extends AbstractAuditable {
 
 		/**
 		 * 行政代码
@@ -67,15 +67,16 @@ public class ModelHolder {
 		/**
 		 * 上级
 		 */
-		@ManyToOne(fetch = FetchType.LAZY)
+		@ManyToOne(fetch = FetchType.LAZY, optional = false)
+		@JSONField(serialize = false)
 		private City parent;
 
 		/**
 		 * 子级
 		 */
-		@OneToMany(fetch = FetchType.LAZY)
+		@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
 		@JoinColumn(name = "parent_id", referencedColumnName = "id")
-		private Set<City> childs;
+		private List<City> childs;
 
 	}
 
@@ -188,7 +189,7 @@ public class ModelHolder {
 		 * 子级
 		 */
 		@OneToMany(fetch = FetchType.LAZY)
-		private Set<SysOrg> childs;
+		private List<SysOrg> childs;
 
 		@Column(name = "org_code")
 		private String orgCode;
@@ -245,7 +246,7 @@ public class ModelHolder {
 		 */
 		@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
 		@JoinColumn(name = "base_code_id", referencedColumnName = "id")
-		private Set<SysChildCode> childCodes;
+		private List<SysChildCode> childCodes;
 
 		@Column(name = "code_name")
 		private String codeName;
@@ -280,7 +281,7 @@ public class ModelHolder {
 	@Data
 	@EqualsAndHashCode(callSuper = false)
 	@MappedSuperclass
-	public static class SysAppBase extends AbstractUUIDPersistable {
+	public static class SysAppBase extends AbstractAuditable {
 
 		@Column(name = "app_code")
 		private String appCode;

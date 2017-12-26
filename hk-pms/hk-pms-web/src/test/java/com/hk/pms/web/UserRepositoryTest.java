@@ -60,8 +60,8 @@ public class UserRepositoryTest {
 	
 	@Test()
 	public void findByOrgIdTest() {
-		List<User> users = userRepository.findByOrgId("1");
-		users.forEach(user -> System.out.println(JsonUtils.toJSONString(user)));
+//		List<User> users = userRepository.findByOrgId("1");
+//		users.forEach(user -> System.out.println(JsonUtils.toJSONString(user)));
 	}
 	@Test()
 	public void exampleTest() {

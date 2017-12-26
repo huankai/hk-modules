@@ -12,6 +12,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
+ * 城市表
  * 
  * @author huangkai
  * @date 2017年12月24日下午8:14:32

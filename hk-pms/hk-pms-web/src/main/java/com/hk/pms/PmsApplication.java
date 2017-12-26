@@ -21,7 +21,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import com.google.common.collect.Lists;
 import com.hk.pms.core.service.UserService;
@@ -35,7 +34,7 @@ import com.hk.pms.shiro.realms.JdbcRealm;
 @ServletComponentScan(basePackages = { "com.hk.core" })
 @SpringBootApplication()
 @EnableCaching() // 启动缓存
-@EnableJpaAuditing() // 启动审计功能
+//@EnableJpaAuditing() // 启动审计功能
 public class PmsApplication /* extends SpringBootServletInitializer */ {
 
 	public static void main(String[] args) {

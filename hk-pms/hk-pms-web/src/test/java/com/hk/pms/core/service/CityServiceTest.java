@@ -3,6 +3,11 @@
  */
 package com.hk.pms.core.service;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.alibaba.fastjson.JSON;
 import com.hk.commons.fastjson.JsonUtils;
 import com.hk.pms.PmsApplication;
 import com.hk.pms.core.domain.City;
@@ -24,39 +30,27 @@ public class CityServiceTest {
 
 	@Autowired
 	private CityService cityService;
-
+	
 	/**
 	 * Test method for
 	 * {@link com.hk.core.service.BaseService#saveOrUpdate(java.lang.Object)}.
+	 * @throws IOException 
 	 */
 	@Test
-	public void testSaveOrUpdate() {
-//		City city = new City();
-//		city.setCode("1");
-//		city.setEnglishName("China");
-//		city.setFullName("中国");
-//		city.setShortName("中国");
-//		city.setPostOffice("1");
-//		cityService.saveOrUpdate(city);
-		
-		City parent = cityService.findOne("402881e66092f9a9016092f9cd320000");
+	public void testSaveOrUpdate() throws IOException {
+		City china = new City();
+		china.setCode("1");
+		china.setEnglishName("China");
+		china.setFullName("中国");
+		china.setShortName("中国");
+		china.setPostOffice("1");
+		City parent = cityService.saveOrUpdate(china);
 		if(null != parent) {
-				City city = new City();
-				city.setCode("110100");
-				city.setEnglishName("ShiXiaQu");
-				city.setFullName("市辖区");
-				city.setShortName("市辖区");
-				city.setPostOffice("110101");
-				city.setParent(parent);
-				cityService.saveOrUpdate(city);
-				city = new City();
-				city.setCode("110100");
-				city.setEnglishName("DongChengQu");
-				city.setFullName("东城区");
-				city.setShortName("东城");
-				city.setPostOffice("110102");
-				city.setParent(parent);
-				cityService.saveOrUpdate(city);
+			InputStream inputStream = CityServiceTest.class.getResourceAsStream("city.json");
+			String jsonString = JSON.parseObject(inputStream, Charset.defaultCharset(), String.class);
+			List<City> list = JsonUtils.parseObjectToList(jsonString, City.class);
+			list.forEach(item -> item.setParent(parent));
+			cityService.saveOrUpdate(list);
 		}
 	}
 

@@ -1,17 +1,5 @@
 package com.hk.core.authentication.shiro.config;
 
-import java.util.List;
-
-import org.pac4j.core.client.Client;
-import org.pac4j.core.client.Clients;
-import org.pac4j.core.config.Config;
-import org.pac4j.core.context.J2EContext;
-import org.pac4j.core.context.session.SessionStore;
-import org.pac4j.core.engine.CallbackLogic;
-import org.pac4j.core.engine.DefaultCallbackLogic;
-import org.pac4j.core.engine.DefaultSecurityLogic;
-import org.pac4j.core.engine.SecurityLogic;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,10 +8,6 @@ import com.hk.core.authentication.api.SecurityContext;
 import com.hk.core.authentication.shiro.ShiroSecurityContext;
 import com.hk.core.authentication.shiro.encrypt.ShiroPasswordEncrypt;
 
-import io.buji.pac4j.context.ShiroSessionStore;
-import io.buji.pac4j.filter.CallbackFilter;
-import io.buji.pac4j.filter.SecurityFilter;
-
 /**
  * Shiro pac4j configuration
  * 
@@ -31,8 +15,7 @@ import io.buji.pac4j.filter.SecurityFilter;
  * @date 2017年12月21日下午12:38:36
  */
 @Configuration
-@SuppressWarnings("rawtypes")
-public class AuthenticationShiroPac4jAutoConfiguration {
+public class AuthenticationShiroAutoConfiguration {
 
 	/* ************Core shiro configuation ************ */
 
@@ -57,25 +40,25 @@ public class AuthenticationShiroPac4jAutoConfiguration {
 	}
 
 	/* ************Core pac4j configuation ************ */
-	
-	@Autowired
-	private List<Client> clientList;
-	
-	@Bean
-	public Config config() {
-		Config config = new Config(clientList);
-		config.setSessionStore(sessionStore());
-		return config;
-	}
 
-	@Bean
-	@ConditionalOnMissingBean(value = Clients.class)
-	public Clients clients() {
-		Clients clients = new Clients();
-		clients.setCallbackUrl("/callback");
-		clients.setClients(clientList);
-		return clients;
-	}
+	// @Autowired
+	// private List<Client> clientList;
+	//
+	// @Bean
+	// public Config config() {
+	// Config config = new Config(clientList);
+	// config.setSessionStore(sessionStore());
+	// return config;
+	// }
+	//
+	// @Bean
+	// @ConditionalOnMissingBean(value = Clients.class)
+	// public Clients clients() {
+	// Clients clients = new Clients();
+	// clients.setCallbackUrl("/callback");
+	// clients.setClients(clientList);
+	// return clients;
+	// }
 
 	/*
 	 * 需要每个应用配置
@@ -91,11 +74,11 @@ public class AuthenticationShiroPac4jAutoConfiguration {
 	 * Lists.newArrayList(client); }
 	 */
 
-	@Bean
-	@ConditionalOnMissingBean(value = SessionStore.class)
-	public SessionStore sessionStore() {
-		return new ShiroSessionStore();
-	}
+	// @Bean
+	// @ConditionalOnMissingBean(value = SessionStore.class)
+	// public SessionStore sessionStore() {
+	// return new ShiroSessionStore();
+	// }
 
 	/**
 	 *
@@ -103,48 +86,49 @@ public class AuthenticationShiroPac4jAutoConfiguration {
 	 * @param config
 	 * @return
 	 */
-	@Bean
-	@ConditionalOnMissingBean(value = SecurityFilter.class)
-	public SecurityFilter securityFilter(Config config) {
-		SecurityFilter filter = new SecurityFilter();
-		filter.setConfig(config);
-		filter.setClients("form");
-		filter.setSecurityLogic(defaultSecurityLogic());
-		return filter;
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	@Bean
-	@ConditionalOnMissingBean(value = SecurityLogic.class)
-	public SecurityLogic<Object, J2EContext> defaultSecurityLogic() {
-		return new DefaultSecurityLogic<>();
-	}
-
-	/**
-	 * 
-	 * @param config
-	 * @param callbackLogic
-	 * @return
-	 */
-	@Bean
-	public CallbackFilter callbackFilter(Config config, CallbackLogic<Object, J2EContext> callbackLogic) {
-		CallbackFilter filter = new CallbackFilter();
-		filter.setConfig(config);
-		filter.setCallbackLogic(callbackLogic);
-		return filter;
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	@Bean
-	@ConditionalOnMissingBean(value = CallbackLogic.class)
-	public CallbackLogic<Object, J2EContext> defaultCallbackLogic() {
-		return new DefaultCallbackLogic<>();
-	}
+	// @Bean
+	// @ConditionalOnMissingBean(value = SecurityFilter.class)
+	// public SecurityFilter securityFilter(Config config) {
+	// SecurityFilter filter = new SecurityFilter();
+	// filter.setConfig(config);
+	// filter.setClients("form");
+	// filter.setSecurityLogic(defaultSecurityLogic());
+	// return filter;
+	// }
+	//
+	// /**
+	// *
+	// * @return
+	// */
+	// @Bean
+	// @ConditionalOnMissingBean(value = SecurityLogic.class)
+	// public SecurityLogic<Object, J2EContext> defaultSecurityLogic() {
+	// return new DefaultSecurityLogic<>();
+	// }
+	//
+	// /**
+	// *
+	// * @param config
+	// * @param callbackLogic
+	// * @return
+	// */
+	// @Bean
+	// public CallbackFilter callbackFilter(Config config, CallbackLogic<Object,
+	// J2EContext> callbackLogic) {
+	// CallbackFilter filter = new CallbackFilter();
+	// filter.setConfig(config);
+	// filter.setCallbackLogic(callbackLogic);
+	// return filter;
+	// }
+	//
+	// /**
+	// *
+	// * @return
+	// */
+	// @Bean
+	// @ConditionalOnMissingBean(value = CallbackLogic.class)
+	// public CallbackLogic<Object, J2EContext> defaultCallbackLogic() {
+	// return new DefaultCallbackLogic<>();
+	// }
 
 }

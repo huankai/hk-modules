@@ -4,21 +4,17 @@ import java.util.Collection;
 import java.util.List;
 
 import org.apache.shiro.mgt.SessionsSecurityManager;
-import org.apache.shiro.mgt.SubjectFactory;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.session.SessionListener;
 import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.google.common.collect.Lists;
 import com.hk.core.authentication.shiro.listeners.LogSessionListener;
-
-import io.buji.pac4j.subject.Pac4jSubjectFactory;
 
 /**
  * Shiro配置
@@ -36,12 +32,12 @@ public class ShiroWebAutoConfiguration
 	@Value("#{@environment['shiro.sessionManager.globalSessionTimeout'] ?: 3600000 }")
 	protected long globalSessionTimeout;
 
-	@Bean
-	@Override
-	@ConditionalOnClass(Pac4jSubjectFactory.class)
-	protected SubjectFactory subjectFactory() {
-		return new Pac4jSubjectFactory();
-	}
+//	@Bean
+//	@Override
+//	@ConditionalOnClass(Pac4jSubjectFactory.class)
+//	protected SubjectFactory subjectFactory() {
+//		return new Pac4jSubjectFactory();
+//	}
 
 	/* ********************* Shiro Configuration ************************* */
 

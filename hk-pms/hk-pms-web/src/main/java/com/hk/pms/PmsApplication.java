@@ -1,18 +1,10 @@
 package com.hk.pms;
 
-import java.util.List;
-
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.crypto.hash.Sha512Hash;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition;
 import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
-import org.pac4j.core.client.Client;
-import org.pac4j.core.credentials.UsernamePasswordCredentials;
-import org.pac4j.core.credentials.authenticator.Authenticator;
-import org.pac4j.core.credentials.authenticator.LocalCachingAuthenticator;
-import org.pac4j.core.profile.CommonProfile;
-import org.pac4j.http.client.indirect.FormClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.Banner;
@@ -22,7 +14,6 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 
-import com.google.common.collect.Lists;
 import com.hk.pms.core.service.UserService;
 import com.hk.pms.shiro.realms.JdbcRealm;
 
@@ -80,11 +71,11 @@ public class PmsApplication /* extends SpringBootServletInitializer */ {
 		return chainDefinition;
 	}
 
-	@Bean
-	@SuppressWarnings("rawtypes")
-	public List<Client> clientList() {
-		Authenticator<UsernamePasswordCredentials> authenticator = new LocalCachingAuthenticator<>();
-		Client<UsernamePasswordCredentials, CommonProfile> client = new FormClient(null, authenticator);
-		return Lists.newArrayList(client);
-	}
+//	@Bean
+//	@SuppressWarnings("rawtypes")
+//	public List<Client> clientList() {
+//		Authenticator<UsernamePasswordCredentials> authenticator = new LocalCachingAuthenticator<>();
+//		Client<UsernamePasswordCredentials, CommonProfile> client = new FormClient(null, authenticator);
+//		return Lists.newArrayList(client);
+//	}
 }

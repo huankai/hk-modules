@@ -3,6 +3,7 @@ package com.hk.pms.core.domain;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -74,7 +75,7 @@ public class ModelHolder {
 		/**
 		 * 子级
 		 */
-		@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
+		@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true,cascade = {CascadeType.ALL})
 		@JoinColumn(name = "parent_id", referencedColumnName = "id")
 		private List<City> childs;
 

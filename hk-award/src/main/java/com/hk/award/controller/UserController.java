@@ -37,12 +37,7 @@ public class UserController {
 	 */
 	@PostMapping("/award")
 	public ResponseEntity<String> award(@RequestParam String phone, @RequestParam String level) {
-		AwardLevel awardLevel = AwardLevel.THREE;
-		if ("1".equals(level)) {
-			awardLevel = AwardLevel.ONE;
-		} else if ("2".equals(level)) {
-			awardLevel = AwardLevel.TWO;
-		}
+		AwardLevel awardLevel = AwardLevel.valueOf(level);
 		User user = userService.awardUser(phone, awardLevel);
 		return ResponseEntity.ok(JSON.toJSONString(user));
 	}

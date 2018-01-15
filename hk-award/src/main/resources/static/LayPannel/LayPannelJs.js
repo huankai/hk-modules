@@ -16,7 +16,7 @@
        };
        var LayObj = {
            initObj: function () {
-               var url = LayUrl.path() + "/resources/LayPannel/Default/image/pic12.gif";
+               var url = LayUrl.path() + "/LayPannel/Default/image/pic12.gif";
                var divobj = '<div id="LayMain" class="LayMain LayDashed">';
                divobj += '<div id="LayMainAll" class="LayMainAll ">';
                divobj += '<div id="LayMainTop" class="LayMainTop LayDashed">本次幸运儿<span id="LaySpan" title="关闭" class="LaySpan"><img src="' + url + '"></span></div>';
@@ -96,8 +96,8 @@
            config: function (message,fn) {
                var info = '<div id="MegInfo" class="MegInfo">' + message + '</div>';
                LayObj.SetSize(300, 150);
-               var btn = '<img src="'+LayUrl.path()+'/resources/LayPannel/Default/image/confirm.gif" class="LayBtn LayDashed" id="LayBtnOK" />';
-               btn += '<img src="'+LayUrl.path()+'/resources/LayPannel/Default/image/off.gif" class="LayBtn LayDashed" id="LayBtnCancel" />';
+               var btn = '<img src="'+LayUrl.path()+'/LayPannel/Default/image/confirm.gif" class="LayBtn LayDashed" id="LayBtnOK" />';
+               btn += '<img src="'+LayUrl.path()+'/LayPannel/Default/image/off.gif" class="LayBtn LayDashed" id="LayBtnCancel" />';
                LayObj.SetLayMainFooter(btn);
                LayObj.SetLayMainMiddle(info);
                LayObj.Open();

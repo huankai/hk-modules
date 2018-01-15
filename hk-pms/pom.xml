@@ -30,7 +30,7 @@
 
 		<spring.boot.version>1.5.8.RELEASE</spring.boot.version>
 		
-		<hk.commons.version>1.0.0.RELEASE</hk.commons.version>
+		<hk.commons.version>1.1.0.RELEASE</hk.commons.version>
 		<hk.core.version>1.0.0.RELEASE</hk.core.version>
 	</properties>
 

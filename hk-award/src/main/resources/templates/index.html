@@ -1,0 +1,105 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>随机抽大奖</title>
+<link rel="stylesheet" type="text/css" th:href="@{/style/css.css}" />
+<link href="${/LayPannel/Default/LayStyle.css}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<input type="hidden" id="listSize" value="${fn:length(userList)}">
+	<c:forEach items="${userList }" var="user" varStatus="status">
+		<input type="hidden" name="name" id="${status.index + 1 }" value="${user.name}" />
+	</c:forEach>
+	<div class="map">
+		<div style="width: 230px; height: 280px; margin: 275px 0 0 42%; overflow: hidden; position: relative;">
+			<span class="importaa" style="position: absolute; top: 98px;">
+				<input class="importaa" type="text" value="${chooseName}" name="textfield" readonly="readonly" id="nu" />
+			</span> <span class="extract" style="position: absolute; top: 120px;">
+				<a href="#"> <img id="b1" src="${/style/start.png}" width="95" height="96" />
+			</a>
+			</span>
+		</div>
+	</div>
+	<form action="${/list}" id="form"
+		method="post">
+		<input type="hidden" id="chooseUser" name="chooseName" />
+	</form>
+</body>
+<script type="text/javascript" src="${/js/jquery.js}" type="text/javascript"></script>
+<script src="${/LayPannel/LayPannelJs.js}" type="text/javascript"></script>
+<script>
+	var isLayBtnOKClick = false;
+	$(function() {
+		var num = $("#listSize").val(); //定义要随机的名单的初始长度
+		var speed = 10; //定义速度,每10ms变一次
+		var startnum = 0;
+		var a = new Array(num);
+		for (var i = 0; i < num; i++) {
+			a[i] = $("#" + (i + 1)).val();
+		}
+		;
+
+		//点击开始按钮注册事件
+		$("#b1")
+				.toggle(
+						function() {
+							//初次点击随机点名
+							interval = setInterval(
+									function() {
+										startnum = Math.round(Math.random()
+												* num * 10);//随机数取整数部分
+										startnum = startnum % num;
+										nu.value = a[startnum];
+									}, speed);
+							$(this)
+									.attr("src", "${pageContext.request.contextPath}/resources/style/stop.png");
+						},
+						function() {
+							isLayBtnOKClick = true;
+							$(this)
+									.attr("src",
+											"${pageContext.request.contextPath}/resources/style/start.png");
+							//再次点击停止转动
+							clearInterval(interval);
+							//获取选中的值,将其状态置为1,表示已经被选择过了
+							var name = $("#nu").val();
+							// 获取用户的选择结果
+							Message
+									.config(
+											"缘来是你:" + name,
+											function(isSelectedPerson) {
+												if (isSelectedPerson) {
+													//数组中删除值为name的元素,其实就是将其和数组最后一个元素互换,然后数组长度-1
+													for (var i = 0; i < num - 1; i++) {
+														if (a[i] == name) {
+															var temp = a[num - 1];
+															a[num - 1] = null;
+															a[i] = temp;
+															break;
+														}
+													}
+													num = num - 1;//数组长度-1
+													$
+															.ajax({
+																type : "POST",
+																url : "${pageContext.request.contextPath}/edit",
+																data : {
+																	"name" : name
+																},
+																success : function(
+																		rslt) {
+																	$(
+																			"#chooseUser")
+																			.val(
+																					name);
+																	var form = $("#form");
+																	$("#form")
+																			.submit();
+																}
+															});
+												}
+											});
+						});
+	});
+</script>
+</html>

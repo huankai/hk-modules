@@ -1,0 +1,12 @@
+server:
+  port: 8001
+  context-path: /award
+  
+spring:
+  thymeleaf: 
+    cache: false
+    encoding: UTF-8
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    content-type: text/html; charset=utf-8

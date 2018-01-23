@@ -6,7 +6,25 @@
 <link rel="stylesheet" type="text/css" th:href="@{/LayPannel/Default/LayStyle.css}" />
 </head>
 <body>
-	<input type="hidden" id="listSize" value="1" />
+	<input type="hidden" id="listSize" th:value="${#lists.size(allUserList)}"/>
+	<div>
+		<table>
+			<thead>
+				<tr>
+					<th>部门名称</th>
+					<th>姓名</th>
+					<th>手机号</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:id="${item.phone}" th:each="item:${allUserList}">
+					<td th:text="${item.deptName}"></td>
+					<td th:text="${item.userName}"></td>
+					<td th:text="${item.phone}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 	<div class="map">
 		<div style="width: 230px; height: 280px; margin: 275px 0 0 42%; overflow: hidden; position: relative;">
 			<span class="importaa" style="position: absolute; top: 98px;left: 40px;">

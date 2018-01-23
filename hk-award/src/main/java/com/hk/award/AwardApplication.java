@@ -8,11 +8,12 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 
 import com.hk.award.domain.User;
 import com.hk.award.repository.UserRepository;
+import com.hk.commons.fastjson.JsonUtils;
 import com.hk.commons.poi.excel.model.ReadResult;
 import com.hk.commons.poi.excel.model.ReadableParam;
 import com.hk.commons.poi.excel.read.ReadableExcel;
@@ -34,13 +35,15 @@ public class AwardApplication implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		Resource resource = new ClassPathResource("user.xlsx");
+		String path = args.getNonOptionArgs().get(0);
+		Resource resource = new FileSystemResource(path);
 		ReadableParam<User> readableParam = new ReadableParam<>();
 		readableParam.setBeanClazz(User.class);
 		readableParam.setTitleRow(0);
 		readableParam.setDataStartRow(1);
 		ReadableExcel<User> readableExcel = new SimpleDomReadableExcel<>(readableParam);
 		ReadResult<User> result = readableExcel.read(resource.getInputStream());
+		System.out.println(JsonUtils.toJSONString(result.getAllSheetData()));
 		userRepository.init(result.getAllSheetData());
 	}
 

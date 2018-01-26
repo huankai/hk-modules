@@ -24,7 +24,7 @@ import com.hk.commons.util.StringUtils;
  * @author huangkai
  * @date 2017年9月22日下午2:51:02
  */
-public class Webs {
+public abstract class Webs {
 
 	/**
 	 * 获取request对象
@@ -63,30 +63,31 @@ public class Webs {
 	public static <T> T getAttributeFromSession(String name) {
 		return getAttribute(name, RequestAttributes.SCOPE_SESSION);
 	}
-	
+
 	/**
 	 * 从Session请求域中设置属性值
 	 * 
 	 * @param name
 	 * @return
 	 */
-	public static void setAttributeFromSession(String name,Object value) {
+	public static void setAttributeFromSession(String name, Object value) {
 		setAttributeFromSession(name, value, false);
-		
+
 	}
+
 	/**
 	 * 从Session请求域中设置属性值
 	 * 
 	 * @param name
 	 * @return
 	 */
-	public static void setAttributeFromSession(String name,Object value,boolean create) {
+	public static void setAttributeFromSession(String name, Object value, boolean create) {
 		HttpSession session = getRequestAttribute().getRequest().getSession(create);
-		if(null != session) {
+		if (null != session) {
 			session.setAttribute(name, value);
 		}
 	}
-	
+
 	/**
 	 * 从Session请求域中设置属性值
 	 * 

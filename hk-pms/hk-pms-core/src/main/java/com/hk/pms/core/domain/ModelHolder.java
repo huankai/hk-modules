@@ -3,10 +3,8 @@ package com.hk.pms.core.domain;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
@@ -27,57 +25,6 @@ import lombok.EqualsAndHashCode;
 public class ModelHolder {
 
 	private ModelHolder() {
-
-	}
-
-	@Data
-	@EqualsAndHashCode(callSuper = false)
-	@MappedSuperclass
-	public static class CityBase extends AbstractAuditable {
-
-		/**
-		 * 行政代码
-		 */
-		@Column(name = "code")
-		private String code;
-
-		/**
-		 * 全称
-		 */
-		@Column(name = "full_name")
-		private String fullName;
-
-		/**
-		 * 简称
-		 */
-		@Column(name = "short_name")
-		private String shortName;
-
-		/**
-		 * 英文名
-		 */
-		@Column(name = "english_name")
-		private String englishName;
-
-		/**
-		 * 邮编
-		 */
-		@Column(name = "post_office")
-		private String postOffice;
-
-		/**
-		 * 上级
-		 */
-		@ManyToOne(fetch = FetchType.LAZY, optional = false)
-		@JSONField(serialize = false)
-		private City parent;
-
-		/**
-		 * 子级
-		 */
-		@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true,cascade = {CascadeType.ALL})
-		@JoinColumn(name = "parent_id", referencedColumnName = "id")
-		private List<City> childs;
 
 	}
 
@@ -203,57 +150,6 @@ public class ModelHolder {
 
 		@Column(name = "org_status")
 		private Integer orgStatus;
-
-	}
-
-	@Data
-	@EqualsAndHashCode(callSuper = false)
-	@MappedSuperclass
-	public static class SysChildCodeBase extends AbstractUUIDPersistable {
-
-		@ManyToOne(optional = false)
-		private SysBaseCode sysBaseCode;
-
-		@Column(name = "child_code")
-		private String childCode;
-
-		@Column(name = "chde_name")
-		private String codeName;
-
-		@Column(name = "status")
-		private Integer status;
-
-		@Column(name = "conditions")
-		private String conditions;
-
-		/**
-		 * 排序
-		 */
-		@Column(name = "sort")
-		private Integer sort;
-
-		@Column(name = "remark")
-		private String remark;
-
-	}
-
-	@Data
-	@EqualsAndHashCode(callSuper = false)
-	@MappedSuperclass
-	public static class SysBaseCodeBase extends AbstractUUIDPersistable {
-
-		/**
-		 *
-		 */
-		@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
-		@JoinColumn(name = "base_code_id", referencedColumnName = "id")
-		private List<SysChildCode> childCodes;
-
-		@Column(name = "code_name")
-		private String codeName;
-
-		@Column(name = "remark")
-		private String remark;
 
 	}
 

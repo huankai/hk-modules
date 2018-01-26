@@ -1,9 +1,7 @@
 /**
  * 
  */
-package com.hk.core.web.query;
-
-import com.hk.core.query.QueryModel;
+package com.hk.core.query;
 
 /**
  * 使用JPA查询

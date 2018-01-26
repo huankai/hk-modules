@@ -3,6 +3,10 @@ package com.hk.core.service;
 import java.io.Serializable;
 import java.util.List;
 
+import com.hk.core.query.JpaQueryModel;
+import com.hk.core.query.QueryModel;
+import com.hk.core.query.QueryPageable;
+
 /**
  * 基本CRUD操作
  * 
@@ -77,12 +81,23 @@ public interface BaseService<T, PK extends Serializable> {
 	 */
 	List<T> findAll(Iterable<PK> ids);
 
-//	/**
-//	 * 
-//	 * @param query
-//	 * @return
-//	 */
-//	<S extends T> QueryResultModel<List<S>> findAll(JPAQueryModel<S> query);
+	/**
+	 * 分页查询
+	 * 
+	 * @param query
+	 *            查询参数
+	 * @return 查询结果
+	 */
+	QueryPageable<T> queryForPage(QueryModel query);
+	
+	/**
+	 * 分页查询
+	 * 
+	 * @param query
+	 *            查询参数
+	 * @return 查询结果
+	 */
+	QueryPageable<T> queryForPage(JpaQueryModel<T> query);
 
 	/**
 	 * Flushes all pending changes to the database.

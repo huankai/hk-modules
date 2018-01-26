@@ -1,9 +1,7 @@
 /**
  * 
  */
-package com.hk.core.web.query;
-
-import com.hk.core.query.QueryModel;
+package com.hk.core.query;
 
 /**
  * @author huangkai
@@ -11,5 +9,5 @@ import com.hk.core.query.QueryModel;
  */
 public class JdbcQueryModel extends QueryModel {
 
-
+	
 }

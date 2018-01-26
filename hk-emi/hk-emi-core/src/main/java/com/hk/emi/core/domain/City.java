@@ -1,12 +1,12 @@
 /**
  * 
  */
-package com.hk.pms.core.domain;
+package com.hk.emi.core.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import com.hk.pms.core.domain.ModelHolder.CityBase;
+import com.hk.emi.core.domain.ModelHolder.CityBase;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

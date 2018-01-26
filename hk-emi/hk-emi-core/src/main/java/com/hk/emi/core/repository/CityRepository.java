@@ -1,10 +1,10 @@
 /**
  * 
  */
-package com.hk.pms.core.repository;
+package com.hk.emi.core.repository;
 
 import com.hk.core.repository.StringRepository;
-import com.hk.pms.core.domain.City;
+import com.hk.emi.core.domain.City;
 
 /**
  * @author huangkai

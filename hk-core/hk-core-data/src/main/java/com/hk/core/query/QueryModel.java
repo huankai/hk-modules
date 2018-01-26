@@ -2,6 +2,8 @@ package com.hk.core.query;
 
 import java.util.List;
 
+import org.springframework.data.domain.Sort.Direction;
+
 import com.google.common.collect.Lists;
 
 public class QueryModel {
@@ -80,6 +82,27 @@ public class QueryModel {
 		return totalRowCount;
 	}
 
+	public int getStartRowIndex() {
+		int startRow = pageIndex;
+		if (pageIndex < 1) {
+			startRow = 1;
+		}
+		return (startRow - 1) * pageSize;
+	}
+
+	/**
+	 * Jpa 查询分页从 0 开始
+	 * 
+	 * @return
+	 */
+	public int getJpaStartRowIndex() {
+		int startRow = pageIndex - 1;
+		if (startRow < 0) {
+			startRow = 0;
+		}
+		return startRow;
+	}
+
 	/**
 	 * 分页时，不需要再count，所以用该属性来存上一次count的数字
 	 * 
@@ -88,6 +111,13 @@ public class QueryModel {
 	 */
 	public void setTotalRowCount(int totalRowCount) {
 		this.totalRowCount = totalRowCount;
+	}
+
+	public List<org.springframework.data.domain.Sort.Order> getSortOrderList() {
+		List<org.springframework.data.domain.Sort.Order> orderList = Lists.newArrayList();
+		orders.forEach(item -> orderList.add(new org.springframework.data.domain.Sort.Order(
+				item.isDesc() ? Direction.DESC : Direction.ASC, item.getField())));
+		return orderList;
 	}
 
 }

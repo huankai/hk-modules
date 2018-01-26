@@ -1,4 +1,4 @@
-package com.hk.pms.core.domain;
+package com.hk.emi.core.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -16,7 +16,7 @@ import lombok.EqualsAndHashCode;
 @Table(name = "sys_base_code")
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class SysBaseCode extends ModelHolder.SysBaseCodeBase {
+public class BaseCode extends ModelHolder.BaseCodeBase {
 
 	/**
 	 * 

@@ -16,6 +16,10 @@ public final class JsonResult {
 
 		FAILURE(-1, "请求失败"),
 
+		REDIRECT(10302, "请求重定向"),
+
+		UNAUTHORIZED(10401, "访问未授权"),
+
 		NOT_FOUND(10404, "访问资源不存在"),
 
 		SERVER_ERROR(10500, "未知错误");
@@ -41,17 +45,86 @@ public final class JsonResult {
 	/**
 	 * 返回数据
 	 */
-	private Object data;
+	private final Object data;
 
 	/**
 	 * 返回状态
 	 */
-	private Status status;
+	private final Status status;
 
 	/**
 	 * 返回消息信息
 	 */
-	private String message;
+	private final String message;
+
+	/**
+	 * 请求成功
+	 * 
+	 * @return
+	 */
+	public static JsonResult success() {
+		return new JsonResult();
+	}
+	
+	/**
+	 * 请求成功
+	 * 
+	 * @return
+	 */
+	public static JsonResult success(Object data) {
+		return new JsonResult(data);
+	}
+
+	/**
+	 * 请求失败
+	 * 
+	 * @return
+	 */
+	public static JsonResult failure() {
+		return new JsonResult();
+	}
+
+	/**
+	 * 请求失败
+	 * 
+	 * @param message
+	 *            失败信息
+	 * @return
+	 */
+	public static JsonResult failure(String message) {
+		return new JsonResult(false, message);
+	}
+
+	/**
+	 * 请求错误
+	 * 
+	 * @return
+	 */
+	public static JsonResult error() {
+		return new JsonResult(Status.SERVER_ERROR);
+	}
+
+	/**
+	 * 请求错误
+	 * 
+	 * @param message
+	 *            错误信息
+	 * @return
+	 */
+	public static JsonResult error(String message) {
+		return new JsonResult(Status.SERVER_ERROR, message);
+	}
+
+	/**
+	 * 请求重定向
+	 * 
+	 * @param redirectUrl
+	 *            重定向地址
+	 * @return
+	 */
+	public static JsonResult redirect(String redirectUrl) {
+		return new JsonResult(Status.REDIRECT, null, redirectUrl);
+	}
 
 	public JsonResult() {
 		this(Status.SUCCESS);
@@ -93,10 +166,6 @@ public final class JsonResult {
 
 	public Object getData() {
 		return data;
-	}
-
-	public void setData(Object data) {
-		this.data = data;
 	}
 
 	public String getMessage() {

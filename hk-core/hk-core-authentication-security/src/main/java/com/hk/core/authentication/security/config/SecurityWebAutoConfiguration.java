@@ -38,11 +38,12 @@ public class SecurityWebAutoConfiguration extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/login").permitAll()
-		.anyRequest().authenticated()
-		.and().formLogin().loginPage("/login")
-		.defaultSuccessUrl("/index").permitAll()
-		.and().logout().logoutUrl("/logout").logoutSuccessUrl("/").permitAll();
+		http.authorizeRequests().anyRequest().permitAll();
+//		http.authorizeRequests().antMatchers("/login").permitAll()
+//		.anyRequest().authenticated()
+//		.and().formLogin().loginPage("/login")
+//		.defaultSuccessUrl("/index").permitAll()
+//		.and().logout().logoutUrl("/logout").logoutSuccessUrl("/").permitAll();
 		
 //		http.authorizeRequests().antMatchers("/","/login").permitAll() // / /login 不需要认证
 //				.anyRequest().authenticated() // 任意请求都需要认证

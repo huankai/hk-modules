@@ -80,10 +80,10 @@ public class FileController {
 	 * @param response
 	 * @throws IOException
 	 */
-	@GetMapping("/{yyyymm}/{dd}/{fileName:.+}")
-	public void view(@PathVariable String yyyymm, @PathVariable String dd, @PathVariable String fileName,
+	@GetMapping("/{yyyy}/{mm}/{dd}/{fileName:.+}")
+	public void view(@PathVariable String yyyy,@PathVariable String mm, @PathVariable String dd, @PathVariable String fileName,
 			HttpServletResponse response) throws IOException {
-		String absPath = String.format("%s/%s/%s", yyyymm, dd, fileName);
+		String absPath = String.format("%s/%s/%s/%s", yyyy,mm, dd, fileName);
 		OutputStream out = response.getOutputStream();
 		response.setContentType("image/jpeg");
 		out.write(fileHandler.getDownData(absPath));

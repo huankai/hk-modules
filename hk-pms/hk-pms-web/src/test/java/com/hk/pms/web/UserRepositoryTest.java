@@ -22,7 +22,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.google.common.collect.Lists;
 import com.hk.commons.fastjson.JsonUtils;
-import com.hk.core.authentication.shiro.encrypt.ShiroPasswordEncrypt;
 import com.hk.pms.PmsApplication;
 import com.hk.pms.core.domain.User;
 import com.hk.pms.core.repository.UserRepository;
@@ -95,7 +94,7 @@ public class UserRepositoryTest {
 		user.setBrithday(LocalDate.now());
 		user.setEmail("semail@xx.com");
 		user.setUserName("admin1");
-		user.setPassWord(new ShiroPasswordEncrypt().asSha512HashToBase64("admin", user.getUserName()));
+//		user.setPassWord(new ShiroPasswordEncrypt().asSha512HashToBase64("admin", user.getUserName()));
 		user.setPhone("138050");
 		user.setSex(0);
 		user.setUserStatus(1);
@@ -119,7 +118,7 @@ public class UserRepositoryTest {
 			user.setBrithday(LocalDate.now());
 			user.setEmail("semail@xx.com" + i);
 			user.setUserName("admin" + i);
-			user.setPassWord(new ShiroPasswordEncrypt().asSha512HashToBase64("admin", user.getUserName()));
+//			user.setPassWord(new ShiroPasswordEncrypt().asSha512HashToBase64("admin", user.getUserName()));
 			user.setPhone("138050" + i);
 			user.setSex(0);
 			user.setUserStatus(1);

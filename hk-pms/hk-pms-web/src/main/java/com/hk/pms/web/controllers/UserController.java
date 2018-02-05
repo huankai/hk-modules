@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.hk.core.authentication.shiro.encrypt.ShiroPasswordEncrypt;
 import com.hk.pms.core.domain.User;
 import com.hk.pms.core.service.UserService;
 
@@ -26,7 +25,7 @@ public class UserController {
 		user.setBrithday(LocalDate.now());
 		user.setEmail("semails@xx.com");
 		user.setUserName("admin");
-		user.setPassWord(new ShiroPasswordEncrypt().asSha512HashToBase64("admin", user.getUserName()));
+//		user.setPassWord(new ShiroPasswordEncrypt().asSha512HashToBase64("admin", user.getUserName()));
 		user.setPhone("13805s0");
 		user.setSex(0);
 		user.setUserStatus(1);

@@ -39,20 +39,20 @@ public class AbstractAuditable extends AbstractUUIDPersistable implements Audita
 	@CreatedBy
 	@Column(name = "created_by")
 	@JSONField(deserialize = false, serialize = false)
-	private String createdBy = "1";
+	private String createdBy;
 
 	@Column(name = "created_date")
 	@CreatedDate
-	private LocalDateTime createdDate = LocalDateTime.now();
+	private LocalDateTime createdDate;
 
 	@Column(name = "last_modified_by")
 	@LastModifiedBy
 	@JSONField(deserialize = false, serialize = false)
-	private String lastModifiedBy = "1";
+	private String lastModifiedBy;
 
 	@Column(name = "last_modified_date")
 	@LastModifiedDate
-	private LocalDateTime lastModifiedDate = LocalDateTime.now();
+	private LocalDateTime lastModifiedDate;
 
 	@Override
 	public String getCreatedBy() {

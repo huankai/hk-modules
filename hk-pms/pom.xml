@@ -37,6 +37,7 @@
 	<modules>
 		<module>hk-pms-core</module>
 		<module>hk-pms-web</module>
+		<module>hk-pms-api</module>
 	</modules>
 
 	<dependencyManagement>

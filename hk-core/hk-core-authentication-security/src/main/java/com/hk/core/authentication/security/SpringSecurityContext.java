@@ -1,11 +1,10 @@
 package com.hk.core.authentication.security;
 
-import java.util.Objects;
-
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import com.hk.commons.util.StringUtils;
 import com.hk.core.authentication.api.SecurityContext;
 import com.hk.core.authentication.api.UserPrincipal;
 import com.hk.core.web.Webs;
@@ -17,11 +16,21 @@ import com.hk.core.web.Webs;
  */
 public class SpringSecurityContext implements SecurityContext {
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.hk.core.authentication.api.SecurityContext#getPrincipal()
+	 */
 	@Override
 	public UserPrincipal getPrincipal() {
 		return (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.hk.core.authentication.api.SecurityContext#isAuthenticated()
+	 */
 	@Override
 	public boolean isAuthenticated() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -29,27 +38,43 @@ public class SpringSecurityContext implements SecurityContext {
 				&& authentication.isAuthenticated();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.hk.core.authentication.api.SecurityContext#setSessionAttribute(java.lang.
+	 * Object, java.lang.Object, boolean)
+	 */
 	@Override
-	public void setSessionAttribute(Object key, Object value) {
-		setSessionAttribute(key, value, false);
-	}
-
-	@Override
-	public void setSessionAttribute(Object key, Object value, boolean create) {
-		if (!Objects.isNull(key)) {
-			Webs.setAttributeFromSession(key.toString(), value, create);
+	public void setSessionAttribute(String key, Object value, boolean create) {
+		if (StringUtils.isNotEmpty(key)) {
+			Webs.setAttributeFromSession(key, value, create);
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.hk.core.authentication.api.SecurityContext#getSessionAttribute(java.lang.
+	 * Object)
+	 */
 	@Override
-	public <T> T getSessionAttribute(Object key) {
-		return Objects.isNull(key) ? null : Webs.getAttributeFromSession(key.toString());
+	public <T> T getSessionAttribute(String key) {
+		return StringUtils.isEmpty(key) ? null : Webs.getAttributeFromSession(key);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.hk.core.authentication.api.SecurityContext#removeSessionAttribute(java.
+	 * lang.Object)
+	 */
 	@Override
-	public void removeSessionAttribute(Object key) {
-		if (!Objects.isNull(key)) {
-			Webs.removeAttributeFromSession((String) key);
+	public void removeSessionAttribute(String key) {
+		if (StringUtils.isNotEmpty(key)) {
+			Webs.removeAttributeFromSession(key);
 		}
 	}
 

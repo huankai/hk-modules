@@ -2,8 +2,6 @@ package com.hk.core.query;
 
 import java.util.List;
 
-import org.springframework.data.domain.Sort.Direction;
-
 import com.google.common.collect.Lists;
 
 public class QueryModel {
@@ -115,8 +113,7 @@ public class QueryModel {
 
 	public List<org.springframework.data.domain.Sort.Order> getSortOrderList() {
 		List<org.springframework.data.domain.Sort.Order> orderList = Lists.newArrayList();
-		orders.forEach(item -> orderList.add(new org.springframework.data.domain.Sort.Order(
-				item.isDesc() ? Direction.DESC : Direction.ASC, item.getField())));
+		orders.forEach(item -> orderList.add(item.toSpringJpaOrder()));
 		return orderList;
 	}
 

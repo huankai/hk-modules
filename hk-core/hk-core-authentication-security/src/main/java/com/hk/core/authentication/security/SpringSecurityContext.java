@@ -23,7 +23,8 @@ public class SpringSecurityContext implements SecurityContext {
 	 */
 	@Override
 	public UserPrincipal getPrincipal() {
-		return (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		return (UserPrincipal) authentication.getPrincipal();
 	}
 
 	/*

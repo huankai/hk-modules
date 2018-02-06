@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.hk</groupId>
 	<artifactId>hk-core</artifactId>
@@ -7,6 +8,13 @@
 	<name>hk-core</name>
 	<packaging>pom</packaging>
 	<url>http://maven.apache.org</url>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.9.RELEASE</version>
+	</parent>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -26,33 +34,25 @@
 		<commons.text.version>1.1</commons.text.version>
 		<commons.io.version>2.5</commons.io.version>
 		<commons.math3.version>3.6.1</commons.math3.version>
-
 		<shiro.version>1.4.0</shiro.version>
-
-		<spring.boot.version>1.5.8.RELEASE</spring.boot.version>
-
 		<hk.commons.version>1.1.0.RELEASE</hk.commons.version>
+		<spring.boot.version>1.5.9.RELEASE</spring.boot.version>
+		<!-- 使用 thymeleaf V3+ -->
+		<thymeleaf.version>3.0.5.RELEASE</thymeleaf.version>
+		<thymeleaf-layout-dialect.version>2.2.1</thymeleaf-layout-dialect.version>
 	</properties>
 
 	<modules>
 		<module>hk-core-data</module>
 		<module>hk-core-web</module>
-    	<module>hk-core-webmvc</module>
+		<module>hk-core-webmvc</module>
 		<module>hk-core-authentication-api</module>
-    	<module>hk-core-authentication-shiro</module>
-    	<module>hk-core-authentication-security</module>
+		<module>hk-core-authentication-shiro</module>
+		<module>hk-core-authentication-security</module>
 	</modules>
 
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-dependencies</artifactId>
-				<version>${spring.boot.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>

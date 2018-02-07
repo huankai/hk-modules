@@ -38,10 +38,12 @@ public class SecurityWebAutoConfiguration extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-        .anyRequest().authenticated()
-        .and().formLogin().loginPage("/login").failureUrl("/login?error").permitAll().and()
-        .logout().permitAll();
+		http.csrf().disable()
+		.authorizeRequests()
+		.antMatchers("/resources/**","/wechat/**").permitAll() //过滤静态资源，与微信相关接口
+        .anyRequest().authenticated()//任意请求都需要认证
+        .and().formLogin().loginPage("/login").failureUrl("/login?error").permitAll() //登陆请求
+        .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login").invalidateHttpSession(true).permitAll();//退出请求
 
 		// http.authorizeRequests().antMatchers("/","/login").permitAll() // / /login
 		// 不需要认证

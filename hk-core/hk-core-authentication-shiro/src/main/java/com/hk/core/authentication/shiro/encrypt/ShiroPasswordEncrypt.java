@@ -13,19 +13,10 @@ import com.hk.commons.util.encrypt.Encrypt;
  */
 public class ShiroPasswordEncrypt implements Encrypt {
 
-	@Override
-	public String asSha512HashToBase64(Object source, Object salt) {
-		return asSha512HashToBase64(source, salt, 1);
-	}
 
 	@Override
 	public String asSha512HashToBase64(Object source, Object salt, int hashIterations) {
 		return new Sha512Hash(source, salt, hashIterations).toBase64();
-	}
-
-	@Override
-	public String asMD5ToString(Object source, Object salt) {
-		return asMD5ToString(source, salt, 1);
 	}
 
 	@Override

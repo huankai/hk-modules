@@ -25,14 +25,17 @@ public class SecurityUserPrincipal extends UserPrincipal implements UserDetails 
 	 * 
 	 */
 	private String passWord;
+	
+	private Integer userStatus;
 
 	public SecurityUserPrincipal() {
 	}
 
 	public SecurityUserPrincipal(String userId, String userName, String passWord, String nickName, Integer userType,
-			String phone, String email, Integer sex) {
-		super(userId, userName, nickName, userType, phone, email, sex);
+			String phone, String email, Integer sex,String iconPath,Integer userStatus) {
+		super(userId, userName, nickName, userType, phone, email, sex,iconPath);
 		this.passWord = passWord;
+		this.userStatus = userStatus;
 	}
 
 	@Override
@@ -63,7 +66,7 @@ public class SecurityUserPrincipal extends UserPrincipal implements UserDetails 
 
 	@Override
 	public boolean isAccountNonLocked() {
-		return true;
+		return null != userStatus && userStatus == 1;
 	}
 
 	@Override

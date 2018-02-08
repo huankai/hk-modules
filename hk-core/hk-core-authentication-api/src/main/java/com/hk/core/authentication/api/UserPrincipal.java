@@ -50,6 +50,11 @@ public class UserPrincipal implements Serializable {
 	 * 用户性别
 	 */
 	private Integer sex;
+	
+	/**
+	 * 用户头像
+	 */
+	private String iconPath;
 
 	/**
 	 * 用户角色
@@ -66,7 +71,7 @@ public class UserPrincipal implements Serializable {
 	}
 
 	public UserPrincipal(String userId, String userName, String nickName, Integer userType, String phone, String email,
-			Integer sex) {
+			Integer sex,String iconPath) {
 		this.userId = userId;
 		this.userName = userName;
 		this.nickName = nickName;
@@ -74,6 +79,7 @@ public class UserPrincipal implements Serializable {
 		this.phone = phone;
 		this.email = email;
 		this.sex = sex;
+		this.iconPath = iconPath;
 	}
 
 	public String getUserId() {
@@ -150,6 +156,14 @@ public class UserPrincipal implements Serializable {
 
 	public String getUserTypeChinease() {
 		return null;
+	}
+	
+	public String getIconPath() {
+		return iconPath;
+	}
+	
+	public void setIconPath(String iconPath) {
+		this.iconPath = iconPath;
 	}
 
 	/**

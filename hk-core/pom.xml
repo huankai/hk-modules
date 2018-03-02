@@ -49,6 +49,7 @@
 		<module>hk-core-authentication-api</module>
 		<module>hk-core-authentication-shiro</module>
 		<module>hk-core-authentication-security</module>
+		<module>hk-core-amqp</module>
 	</modules>
 
 	<dependencyManagement>

@@ -21,6 +21,10 @@
 			<artifactId>hk-commons-util</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>com.hk</groupId>
 			<artifactId>hk-core-authentication-api</artifactId>
 			<version>${project.version}</version>

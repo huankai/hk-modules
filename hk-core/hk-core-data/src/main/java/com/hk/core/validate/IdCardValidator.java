@@ -23,10 +23,7 @@ public class IdCardValidator implements ConstraintValidator<IdCard, CharSequence
 
 	@Override
 	public boolean isValid(CharSequence value, ConstraintValidatorContext context) {
-		if(nullable && StringUtils.isEmpty(value)) {
-			return true;
-		}
-		return ValidateUtils.isIDCard(value);
+		return StringUtils.isEmpty(value) ? nullable : ValidateUtils.isIDCard(value);
 	}
 	
 }

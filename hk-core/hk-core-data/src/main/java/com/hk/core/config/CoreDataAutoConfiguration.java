@@ -29,6 +29,11 @@ public class CoreDataAutoConfiguration {
 		return new JdbcSession(jdbcTemplate, namedParameterJdbcTemplate, dialect);
 	}
 
+	/**
+	 * 使用的数据库，默认为MYSQL
+	 * 
+	 * @return
+	 */
 	@Bean
 	@ConditionalOnMissingBean(value = Dialect.class)
 	public Dialect Dialect() {

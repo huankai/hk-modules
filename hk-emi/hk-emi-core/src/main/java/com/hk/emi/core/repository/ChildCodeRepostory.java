@@ -3,6 +3,8 @@ package com.hk.emi.core.repository;
 import com.hk.core.repository.StringRepository;
 import com.hk.emi.core.domain.ChildCode;
 
+import java.util.List;
+
 /**
  * 
  * @author huangkai
@@ -10,4 +12,5 @@ import com.hk.emi.core.domain.ChildCode;
  */
 public interface ChildCodeRepostory extends StringRepository<ChildCode> {
 
+    List<ChildCode> findByBaseCodeId(String baseCodeId);
 }

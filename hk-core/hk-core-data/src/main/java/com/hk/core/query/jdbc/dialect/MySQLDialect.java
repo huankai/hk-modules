@@ -1,5 +1,11 @@
 package com.hk.core.query.jdbc.dialect;
 
+/**
+ * MySql Dialect
+ * 
+ * @author kally
+ * @date 2018年4月3日下午2:55:55
+ */
 public class MySQLDialect implements Dialect {
 
 	@Override

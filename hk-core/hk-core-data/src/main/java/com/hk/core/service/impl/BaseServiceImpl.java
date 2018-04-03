@@ -132,8 +132,8 @@ public abstract class BaseServiceImpl<T, PK extends Serializable> implements Bas
 	 * @see com.hk.core.service.BaseService#flush()
 	 */
 	@Override
-	@Transactional(readOnly = false)
-	public final void flush() {
+	@Transactional
+	public void flush() {
 		getBaseRepository().flush();
 	}
 

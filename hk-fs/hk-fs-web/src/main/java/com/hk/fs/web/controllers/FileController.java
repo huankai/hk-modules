@@ -69,7 +69,7 @@ public class FileController {
 	 */
 	@GetMapping("/down")
 	public ResponseEntity<byte[]> down(@RequestParam String filePath) {
-		byte[] dataByte = fileHandler.getDownData(filePath);
+		byte[] dataByte = fileHandler.getFileData(filePath);
 		return Webs.toDownResponseEntity(filePath, dataByte);
 	}
 
@@ -86,7 +86,7 @@ public class FileController {
 		String absPath = String.format("%s/%s/%s/%s", yyyy,mm, dd, fileName);
 		OutputStream out = response.getOutputStream();
 		response.setContentType("image/jpeg");
-		out.write(fileHandler.getDownData(absPath));
+		out.write(fileHandler.getFileData(absPath));
 		out.close();
 	}
 }

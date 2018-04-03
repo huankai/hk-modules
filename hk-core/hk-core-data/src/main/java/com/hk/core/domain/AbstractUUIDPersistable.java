@@ -11,6 +11,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.util.ClassUtils;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.hk.commons.util.StringUtils;
 
 /**
  * 基于 UUID的主键生成
@@ -43,7 +44,7 @@ public class AbstractUUIDPersistable implements Persistable<String> {
 	@Transient // DATAJPA-622
 	@JSONField(serialize = false, deserialize = false)
 	public boolean isNew() {
-		return null == getId();
+		return StringUtils.isEmpty(getId());
 	}
 
 	/*

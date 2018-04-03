@@ -24,111 +24,108 @@ import lombok.EqualsAndHashCode;
 @SuppressWarnings("serial")
 public class ModelHolder {
 
-	private ModelHolder() {
+    private ModelHolder() {
 
-	}
-	
-	@Data
-	@EqualsAndHashCode(callSuper = false)
-	@MappedSuperclass
-	public static class BaseCodeBase extends AbstractUUIDPersistable {
+    }
 
-		/**
-		 *
-		 */
-		@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
-		@JoinColumn(name = "base_code_id", referencedColumnName = "id")
-		private List<ChildCode> childCodes;
+    @Data
+    @EqualsAndHashCode(callSuper = false)
+    @MappedSuperclass
+    public static class BaseCodeBase extends AbstractUUIDPersistable {
 
-		@Column(name = "code_name")
-		private String codeName;
+        /**
+         *
+         */
+        @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
+        @JoinColumn(name = "base_code_id", referencedColumnName = "id")
+        private List<ChildCode> childCodes;
 
-		@Column(name = "remark")
-		private String remark;
+        @Column(name = "code_name")
+        private String codeName;
 
-	}
-	
-	@Data
-	@EqualsAndHashCode(callSuper = false)
-	@MappedSuperclass
-	public static class ChildCodeBase extends AbstractUUIDPersistable {
+        @Column(name = "description")
+        private String description;
 
-		@ManyToOne(optional = false)
-		private BaseCode sysBaseCode;
+    }
 
-		@Column(name = "child_code")
-		private String childCode;
+    @Data
+    @EqualsAndHashCode(callSuper = false)
+    @MappedSuperclass
+    public static class ChildCodeBase extends AbstractUUIDPersistable {
 
-		@Column(name = "chde_name")
-		private String codeName;
+        @ManyToOne(optional = false)
+        private BaseCode sysBaseCode;
 
-		@Column(name = "status")
-		private Integer status;
+        @Column(name = "child_code")
+        private String childCode;
 
-		@Column(name = "conditions")
-		private String conditions;
+        @Column(name = "code_name")
+        private String codeName;
 
-		/**
-		 * 排序
-		 */
-		@Column(name = "sort")
-		private Integer sort;
+        @Column(name = "state")
+        private Integer state;
 
-		@Column(name = "remark")
-		private String remark;
+        @Column(name = "description")
+        private String description;
 
-	}
-	
+    }
 
-	@Data
-	@EqualsAndHashCode(callSuper = false)
-	@MappedSuperclass
-	public static class CityBase extends AbstractAuditable {
 
-		/**
-		 * 行政代码
-		 */
-		@Column(name = "code")
-		private String code;
+    @Data
+    @EqualsAndHashCode(callSuper = false)
+    @MappedSuperclass
+    public static class CityBase extends AbstractAuditable {
 
-		/**
-		 * 全称
-		 */
-		@Column(name = "full_name")
-		private String fullName;
+        /**
+         * 行政代码
+         */
+        @Column(name = "code")
+        private String code;
 
-		/**
-		 * 简称
-		 */
-		@Column(name = "short_name")
-		private String shortName;
+        /**
+         * 全称
+         */
+        @Column(name = "full_name")
+        private String fullName;
 
-		/**
-		 * 英文名
-		 */
-		@Column(name = "english_name")
-		private String englishName;
+        /**
+         * 简称
+         */
+        @Column(name = "short_name")
+        private String shortName;
 
-		/**
-		 * 邮编
-		 */
-		@Column(name = "post_office")
-		private String postOffice;
+        /**
+         * 英文名
+         */
+        @Column(name = "english_name")
+        private String englishName;
 
-		/**
-		 * 上级
-		 */
-		@ManyToOne(fetch = FetchType.LAZY, optional = false)
-		@JSONField(serialize = false)
-		private City parent;
+        /**
+         * 邮编
+         */
+        @Column(name = "post_office")
+        private String postOffice;
 
-		/**
-		 * 子级
-		 */
-		@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true,cascade = {CascadeType.ALL})
-		@JoinColumn(name = "parent_id", referencedColumnName = "id")
-		private List<City> childs;
+        /**
+         * 描述
+         */
+        @Column(name = "description")
+        private String description;
 
-	}
-	
+        /**
+         * 上级
+         */
+        @ManyToOne(fetch = FetchType.LAZY, optional = false)
+        @JSONField(serialize = false)
+        private City parent;
+
+        /**
+         * 子级
+         */
+        @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = {CascadeType.ALL})
+        @JoinColumn(name = "parent_id", referencedColumnName = "id")
+        private List<City> childs;
+
+    }
+
 }

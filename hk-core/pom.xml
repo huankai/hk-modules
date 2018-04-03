@@ -50,6 +50,7 @@
 		<module>hk-core-authentication-shiro</module>
 		<module>hk-core-authentication-security</module>
 		<module>hk-core-amqp</module>
+		<module>hk-core-rocketmq</module>
 		<module>hk-core-redis</module>
 	</modules>
 

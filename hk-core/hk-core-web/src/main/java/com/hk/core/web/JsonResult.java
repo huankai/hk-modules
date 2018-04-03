@@ -12,11 +12,11 @@ public final class JsonResult {
 
 	public enum Status {
 
-		SUCCESS(10200, "请求成功"),
+		SUCCESS(10200, "操作成功"),
 
-		FAILURE(-1, "请求失败"),
+		FAILURE(-1, "操作失败"),
 
-		REDIRECT(10302, "请求重定向"),
+		REDIRECT(10302, "重定向"),
 
 		UNAUTHORIZED(10401, "访问未授权"),
 

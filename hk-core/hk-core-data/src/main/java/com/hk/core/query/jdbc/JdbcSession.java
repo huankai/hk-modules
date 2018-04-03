@@ -3,6 +3,7 @@ package com.hk.core.query.jdbc;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.ColumnMapRowMapper;
@@ -185,7 +186,7 @@ public class JdbcSession {
 		}
 		Set<String> groupBys = arguments.getGroupBys();
 		if (CollectionUtils.isNotEmpty(groupBys)) {
-			String groupBySql = StringUtils.join(groupBys, ",");
+			String groupBySql = groupBys.stream().collect(Collectors.joining(StringUtils.COMMA_SEPARATE));
 			sql.append(" GROUP BY ");
 			sql.append(groupBySql);
 			countSql.append(" GROUP BY ");
@@ -198,7 +199,7 @@ public class JdbcSession {
 			int index = 0;
 			for (Order order : orders) {
 				if (index++ > 0) {
-					sql.append(",");
+					sql.append(StringUtils.COMMA_SEPARATE);
 				}
 				sql.append(order.toString());
 			}

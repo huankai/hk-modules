@@ -21,25 +21,8 @@ spring:
   profiles: 
     active:
     - dev
-
-#################################################### Shiro 配置
-shiro: 
-  userNativeSessionManager: false
-  sessionManager: 
-    sessionIdUrlRewritingEnabled: false
-    globalSessionTimeout: 3600000       
-  loginUrl: /login                     # 登陆地址
-  successUrl: /index                   # 登陆成功后的地址
-  unauthorizedUrl: /unauthorized       # 未授权重定向地址
-  web: 
-    enabled: true  #是否为 web环境
-    
     
 #################################################### 日志配置    
 logging: 
   config: classpath:log4j2.xml   #日志文件配置路径
   
-  
-fs: 
-  upload:  
-    basepath: D:/qianduan 

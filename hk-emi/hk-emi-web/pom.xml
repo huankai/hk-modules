@@ -10,7 +10,7 @@
 	</parent>
 	<artifactId>hk-emi-web</artifactId>
 	<name>hk-emi-web</name>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

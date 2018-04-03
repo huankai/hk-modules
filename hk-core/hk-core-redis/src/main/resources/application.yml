@@ -1,5 +1,6 @@
 spring:
-  redis: 
+  redis:
+    password: 1234567
     cluster:
       nodes:
       - 192.168.64.128:6379

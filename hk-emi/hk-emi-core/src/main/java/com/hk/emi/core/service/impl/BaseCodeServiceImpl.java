@@ -4,6 +4,8 @@
 package com.hk.emi.core.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import com.hk.core.repository.BaseRepository;
@@ -22,6 +24,14 @@ public class BaseCodeServiceImpl extends BaseServiceImpl<BaseCode, String> imple
 
 	@Autowired
 	private BaseCodeRepostory baseCodeRepostory;
+
+	@Override
+	protected Example<BaseCode> getExample(BaseCode t) {
+		if(null == t){
+			t = new BaseCode();
+		}
+		return Example.of(t, ExampleMatcher.matching().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING));
+	}
 
 	@Override
 	protected BaseRepository<BaseCode, String> getBaseRepository() {

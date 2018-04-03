@@ -22,21 +22,21 @@ import com.hk.core.web.XssHttpServletRequestWrapper;
 @WebFilter(filterName = "xssFilter", urlPatterns = "/*")
 public class XssFilter extends AbstractFilter {
 
-	@Override
-	protected void doInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
-		chain.doFilter(new XssHttpServletRequestWrapper(request), response);
-	}
+    @Override
+    protected void doInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+        chain.doFilter(new XssHttpServletRequestWrapper(request), response);
+    }
 
-	// private boolean isExcludeUrl(HttpServletRequest request) {
-	// if (excludeUrls != null) {
-	// for (String url : excludeUrls) {
-	// if (request.getRequestURI().contains(url)) {
-	// return true;
-	// }
-	// }
-	// }
-	// return false;
-	// }
+    // private boolean isExcludeUrl(HttpServletRequest request) {
+    // if (excludeUrls != null) {
+    // for (String url : excludeUrls) {
+    // if (request.getRequestURI().contains(url)) {
+    // return true;
+    // }
+    // }
+    // }
+    // return false;
+    // }
 
 }

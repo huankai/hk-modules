@@ -18,7 +18,7 @@ public class ListResult<T> {
 	private List<T> result;
 
 	/**
-	 * @param rowCount
+	 * @param totalRowCount
 	 * @param result
 	 */
 	public ListResult(long totalRowCount, List<T> result) {

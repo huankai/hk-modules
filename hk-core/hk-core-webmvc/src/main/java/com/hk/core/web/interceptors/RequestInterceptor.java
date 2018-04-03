@@ -12,35 +12,35 @@ import com.hk.core.authentication.api.SecurityContext;
 
 /**
  * 请求拦截器，设置属性到request
- * 
+ *
  * @author huangkai
  * @date 2017年10月25日下午1:09:17
  */
 public class RequestInterceptor extends HandlerInterceptorAdapter {
 
-	public static final String SESSION_USER_KEY = "user";
+    public static final String SESSION_USER_KEY = "user";
 
-	private SecurityContext securityContext;
+    private SecurityContext securityContext;
 
-	private Map<String, String> properties;
+    private Map<String, String> properties;
 
-	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
-		if (CollectionUtils.isNotEmpty(properties)) {
-			properties.forEach((key, value) -> request.setAttribute(key, value));
-		}
-		if(securityContext.isAuthenticated()) {
-			request.setAttribute(SESSION_USER_KEY, securityContext.getPrincipal());
-		}
-		return true;
-	}
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+            throws Exception {
+        if (CollectionUtils.isNotEmpty(properties)) {
+            properties.forEach(request::setAttribute);
+        }
+        if (securityContext.isAuthenticated()) {
+            request.setAttribute(SESSION_USER_KEY, securityContext.getPrincipal());
+        }
+        return true;
+    }
 
-	public void setProperties(Map<String, String> properties) {
-		this.properties = properties;
-	}
+    public void setProperties(Map<String, String> properties) {
+        this.properties = properties;
+    }
 
-	public void setSecurityContext(SecurityContext securityContext) {
-		this.securityContext = securityContext;
-	}
+    public void setSecurityContext(SecurityContext securityContext) {
+        this.securityContext = securityContext;
+    }
 }

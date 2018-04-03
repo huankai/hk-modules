@@ -10,37 +10,38 @@ import com.hk.commons.util.StringUtils;
 
 /**
  * Xss Request Wrapper
+ *
  * @author huangkai
  * @date 2017年10月11日下午1:40:05
  */
 public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
 
-	public XssHttpServletRequestWrapper(HttpServletRequest request) {
-		super(request);
-	}
+    public XssHttpServletRequestWrapper(HttpServletRequest request) {
+        super(request);
+    }
 
-	@Override
-	public String getQueryString() {
-		String queryString = super.getQueryString();
-		if(StringUtils.isNotEmpty(queryString)) {
-			queryString = StringEscapeUtils.escapeHtml4(queryString);
+    @Override
+    public String getQueryString() {
+        String queryString = super.getQueryString();
+        if (StringUtils.isNotEmpty(queryString)) {
+            queryString = StringEscapeUtils.escapeHtml4(queryString);
 //			queryString = XssUtils.encode(queryString);
-		}
-		return queryString;
-	}
-	
-	@Override
-	public String getParameter(String name) {
-		String value = super.getParameter(StringEscapeUtils.escapeHtml4(name));
-		 if (StringUtils.isNotEmpty(value)) {
+        }
+        return queryString;
+    }
+
+    @Override
+    public String getParameter(String name) {
+        String value = super.getParameter(StringEscapeUtils.escapeHtml4(name));
+        if (StringUtils.isNotEmpty(value)) {
             value = StringEscapeUtils.escapeHtml4(value);
         }
         return value;
-	}
-	
-	@Override
-	public String[] getParameterValues(String name) {
-		String[] parameters = super.getParameterValues(name);
+    }
+
+    @Override
+    public String[] getParameterValues(String name) {
+        String[] parameters = super.getParameterValues(name);
         if (ArrayUtils.isEmpty(parameters)) {
             return null;
         }
@@ -48,16 +49,16 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
             parameters[i] = StringEscapeUtils.escapeHtml4(parameters[i]);
         }
         return parameters;
-	}
-	
-	
-	@Override
-	public String getHeader(String name) {
-		String value = super.getHeader(StringEscapeUtils.escapeHtml4(name));
+    }
+
+
+    @Override
+    public String getHeader(String name) {
+        String value = super.getHeader(StringEscapeUtils.escapeHtml4(name));
         if (StringUtils.isNotEmpty(value)) {
             value = StringEscapeUtils.escapeHtml4(value);
         }
         return value;
-	}
-	
+    }
+
 }

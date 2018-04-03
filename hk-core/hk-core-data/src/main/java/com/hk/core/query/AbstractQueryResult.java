@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.hk.core.query;
 
 import java.util.List;

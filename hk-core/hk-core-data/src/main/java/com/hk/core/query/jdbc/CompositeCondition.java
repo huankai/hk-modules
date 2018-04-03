@@ -21,7 +21,7 @@ public class CompositeCondition implements Condition {
 	private List<Condition> conditions = Lists.newArrayList();
 
 	/**
-	 * @param andOr
+	 *
 	 */
 	public CompositeCondition() {
 		this.andOr = AndOr.AND;

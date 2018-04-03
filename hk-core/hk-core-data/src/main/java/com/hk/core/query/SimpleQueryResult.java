@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.hk.core.query;
 
 import java.util.List;
@@ -24,8 +21,9 @@ public final class SimpleQueryResult<T> extends AbstractQueryResult<T> {
 	private int pageSize;
 
 	/**
-	 * @param pageIndex
-	 * @param pageSize
+	 * @param query
+	 * @param totalRowCount
+	 * @param data
 	 */
 	public SimpleQueryResult(QueryModel query, long totalRowCount, List<T> data) {
 		this.pageIndex = query.getPageIndex();

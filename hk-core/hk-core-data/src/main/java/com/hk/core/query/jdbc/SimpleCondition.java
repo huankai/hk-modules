@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.hk.core.query.jdbc;
 
 import java.util.Arrays;
@@ -27,7 +24,7 @@ public class SimpleCondition implements Condition {
 	private static Map<Operator, ComparableCondition> conditions;
 
 	static {
-		conditions = new HashMap<Operator, ComparableCondition>();
+		conditions = new HashMap<>();
 		ComparableCondition c = new BinaryCondition();
 		conditions.put(Operator.EQ, c);
 		conditions.put(Operator.LT, c);
